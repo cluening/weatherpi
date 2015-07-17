@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <title>Weather!</title>
+    <link rel="stylesheet" href="main.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="climacons/climacons-font.css" />
+    <script src="main.js"></script>
+  </head>
+  <body onload="onLoad()">
+    <div class="screen" id="screen">
+      <div class="time" id="time">--:--</div>
+      <div class="conditions">
+        <span class="climacon cloud refresh" id="icon"></span>
+      </div>
+      <div class="temperature">
+        <span class="temperature"><span id="temperature">--</span>&deg;</span><BR>
+        <span class="tempdelta" id="tempdelta">and falling</span>
+      </div>
+      <div class="highlow">
+        <span class="highlow"><sup><span id="hightemp">--</span>&deg;</sup>/<sub><span id="lowtemp">--</span>&deg;</sub></span>
+      </div>
+    </div>
+  </body>
+</html>

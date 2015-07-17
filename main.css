@@ -1,0 +1,46 @@
+body {
+  background-color: white;
+  color: white;
+  font-family: Tahoma, Verdana, Geneva, sans-serif;
+  text-shadow: 0px 2px 0px rgba(0, 0, 0, .3);
+}
+
+div.screen {
+  width: 480px;
+  height: 320px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+  background: radial-gradient(at top, #91D4F1, #2567C8);
+  //background: radial-gradient(at top, #012F68, #000E3E);
+}
+ 
+div.time {
+  margin-top: 5%;
+  font-size: 140px;
+  font-weight: bold;
+  text-align: center;
+}
+
+div.conditions {
+  float: left;
+  font-size: 100px;
+  width: 1em;
+  text-align: center;
+}
+
+div.temperature {
+  float: left;
+}
+
+div.highlow {
+  float: right;
+}
+
+span.highlow {
+  font-size: 50px;
+}
+
+span.temperature {
+  font-size: 50px;
+}
