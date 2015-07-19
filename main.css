@@ -12,7 +12,6 @@ div.screen {
   height: 320px;
   cursor: none;
   background-color: #2567C8;
-  background: -webkit-radial-gradient(at top, #91D4F1, #2567C8);
   background: radial-gradient(at top, #91D4F1, #2567C8);
   /*background: radial-gradient(at top, #012F68, #000E3E);*/
 }
