@@ -28,6 +28,7 @@ function updateWeatherDisplay(weatherjson){
   var hightemp = document.getElementById("hightemp");
   var lowtemp = document.getElementById("lowtemp");
   var screen = document.getElementById("screen");
+  var hourlysummary = document.getElementById("hourlysummary");
   var curtime = Math.floor(Date.now()/1000); // Convert from milliseconds
   console.log("Time: " + curtime);
   
@@ -36,6 +37,7 @@ function updateWeatherDisplay(weatherjson){
   tempdelta.textContent = weather['tempdelta'];
   hightemp.textContent = weather['hightemp'];
   lowtemp.textContent = weather['lowtemp'];
+  hourlysummary.textContent = weather['hourlysummary'];
   //screen.style.background = "radial-gradient(at top, #012F68, #000E3E)";
   //console.log("Sunrisetime: " + weather['sunriseTime']);
   //console.log("Sunsettime: " + weather['sunsetTime']);

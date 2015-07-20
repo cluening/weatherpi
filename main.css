@@ -12,6 +12,7 @@ div.screen {
   height: 320px;
   cursor: none;
   background-color: #2567C8;
+  overflow: hidden;
   /*background-color: #000E3E;*/
   /*background: radial-gradient(at top, #91D4F1, #2567C8);*/
   /*background: radial-gradient(at top, #012F68, #000E3E);*/
@@ -37,6 +38,12 @@ div.temperature {
 
 div.highlow {
   float: right;
+}
+
+div.hourlysummary {
+  clear: both;
+  text-align: center;
+  font-size: 20px;
 }
 
 span.highlow {
