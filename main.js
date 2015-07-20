@@ -1,4 +1,8 @@
+var weather = {};
+
 function onLoad(){
+  weather['sunriseTime'] = 0;
+  weather['sunsetTime'] = 0;
   updateTime();
   updateWeather();
 }
@@ -17,7 +21,7 @@ function weatherHandler(){
 }
 
 function updateWeatherDisplay(weatherjson){
-  var weather = JSON.parse(weatherjson);
+  weather = JSON.parse(weatherjson);
   var iconspan = document.getElementById("icon");
   var temperaturespan = document.getElementById("temperature");
   var tempdelta = document.getElementById("tempdelta");
@@ -33,19 +37,20 @@ function updateWeatherDisplay(weatherjson){
   hightemp.textContent = weather['hightemp'];
   lowtemp.textContent = weather['lowtemp'];
   //screen.style.background = "radial-gradient(at top, #012F68, #000E3E)";
-  console.log("Sunrisetime: " + weather['sunriseTime']);
-  console.log("Sunsettime: " + weather['sunsetTime']);
-  if(curtime > weather['sunriseTime'] && curtime < weather['sunsetTime']){
-    screen.style.backgroundColor = "#2567C8";  // Day
-  } else {
-    screen.style.backgroundColor = "#000E3E";  // Night
-  }
+  //console.log("Sunrisetime: " + weather['sunriseTime']);
+  //console.log("Sunsettime: " + weather['sunsetTime']);
+  //if(curtime > weather['sunriseTime'] && curtime < weather['sunsetTime']){
+  //  screen.style.backgroundColor = "#2567C8";  // Day
+  //} else {
+  //  screen.style.backgroundColor = "#000E3E";  // Night
+  //}
   
   setTimeout(function(){updateWeather()}, 15*60*1000);
 }
 
 function updateTime(){
   var now = new Date();
+  var timestamp = Date.parse(now);
   var hours = now.getHours();
   var minutes = now.getMinutes();
   
@@ -60,6 +65,13 @@ function updateTime(){
   
   timespan = document.getElementById("time");
   timespan.innerHTML = hours + ":" + minutes;
+  
+  var screen = document.getElementById("screen");
+  if(timestamp > weather['sunriseTime'] && timestamp < weather['sunsetTime']){
+    screen.style.backgroundColor = "#2567C8";  // Day
+  } else {
+    screen.style.backgroundColor = "#000E3E";  // Night
+  }
   
   setTimeout(function(){updateTime()}, 500);
 }
