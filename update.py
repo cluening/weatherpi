@@ -34,7 +34,7 @@ climacon = {
 
 forecast = forecastio.load_forecast(api_key, lat, lon)
 
-currentweatherfile = open('/var/www/html/weatherpi/currentweather.json', 'r')
+currentweatherfile = open(config.get("Updater", "currentweatherfile"), 'r')
 weatherprev = json.load(currentweatherfile)
 currentweatherfile.close()
 
@@ -65,6 +65,6 @@ print "Temperature: %s" % weather['temperature']
 
 print json.dumps(weather)
 
-currentweatherfile = open('/var/www/html/weatherpi/currentweather.json', 'w')
+currentweatherfile = open(config.get("Updater", "currentweatherfile"), 'w')
 json.dump(weather, currentweatherfile)
 currentweatherfile.close()
