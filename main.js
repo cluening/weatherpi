@@ -39,8 +39,8 @@ function updateWeatherDisplay(weatherjson){
   lowtemp.textContent = weather['lowtemp'];
   hourlysummary.textContent = weather['hourlysummary'];
   //screen.style.background = "radial-gradient(at top, #012F68, #000E3E)";
-  //console.log("Sunrisetime: " + weather['sunriseTime']);
-  //console.log("Sunsettime: " + weather['sunsetTime']);
+  console.log("Sunrisetime: " + weather['sunriseTime']);
+  console.log("Sunsettime: " + weather['sunsetTime']);
   //if(curtime > weather['sunriseTime'] && curtime < weather['sunsetTime']){
   //  screen.style.backgroundColor = "#2567C8";  // Day
   //} else {
@@ -52,7 +52,7 @@ function updateWeatherDisplay(weatherjson){
 
 function updateTime(){
   var now = new Date();
-  var timestamp = Date.parse(now);
+  var timestamp = Date.parse(now)/1000;
   var hours = now.getHours();
   var minutes = now.getMinutes();
   
@@ -68,6 +68,9 @@ function updateTime(){
   timespan = document.getElementById("time");
   timespan.innerHTML = hours + ":" + minutes;
   
+  //console.log("Time: " + timestamp);
+  //console.log("Sunrisetime: " + weather['sunriseTime']);
+  //console.log("Sunsettime: " + weather['sunsetTime']);
   var screen = document.getElementById("screen");
   if(timestamp > weather['sunriseTime'] && timestamp < weather['sunsetTime']){
     screen.style.backgroundColor = "#2567C8";  // Day
