@@ -2,13 +2,13 @@ var weather = {};
 
 function onLoad(){
   weather['sunriseTime'] = 0;
-  weather['sunsetTime'] = 0;
+  weather['sunsetTime'] = Number.MAX_VALUE;
   updateTime();
   updateWeather();
 }
 
 function updateWeather(){
-  var url = "/weatherpi/currentweather.json";
+  var url = "currentweather.json";
   var Httpreq = new XMLHttpRequest();
 
   Httpreq.onload = weatherHandler;
