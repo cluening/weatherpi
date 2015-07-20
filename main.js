@@ -17,20 +17,29 @@ function weatherHandler(){
 }
 
 function updateWeatherDisplay(weatherjson){
-  weather = JSON.parse(weatherjson);
-  console.log("Got weather!" + weather['icon']);
-  
+  var weather = JSON.parse(weatherjson);
   var iconspan = document.getElementById("icon");
   var temperaturespan = document.getElementById("temperature");
   var tempdelta = document.getElementById("tempdelta");
   var hightemp = document.getElementById("hightemp");
   var lowtemp = document.getElementById("lowtemp");
+  var screen = document.getElementById("screen");
+  var curtime = Math.floor(Date.now()/1000); // Convert from milliseconds
+  console.log("Time: " + curtime);
   
   iconspan.className = weather['icon'];
   temperaturespan.textContent = weather['temperature'];
   tempdelta.textContent = weather['tempdelta'];
   hightemp.textContent = weather['hightemp'];
   lowtemp.textContent = weather['lowtemp'];
+  //screen.style.background = "radial-gradient(at top, #012F68, #000E3E)";
+  console.log("Sunrisetime: " + weather['sunriseTime']);
+  console.log("Sunsettime: " + weather['sunsetTime']);
+  if(curtime > weather['sunriseTime'] && curtime < weather['sunsetTime']){
+    screen.style.backgroundColor = "#2567C8";  // Day
+  } else {
+    screen.style.backgroundColor = "#000E3E";  // Night
+  }
   
   setTimeout(function(){updateWeather()}, 15*60*1000);
 }

@@ -4,6 +4,9 @@ import sys
 import json
 import forecastio
 import ConfigParser
+import time
+import calendar
+import datetime
 
 weather = {}
 
@@ -11,7 +14,6 @@ config = ConfigParser.ConfigParser()
 if len(config.read(["weatherpi.cfg", "/etc/weatherpi.cfg"])) > 1:
   sys.stderr.write("Could not load any config files\n")
   sys.exit(1)
-
 
 api_key = config.get("Updater", "forecastioapikey")
 lat = config.get("Updater", "lat")
@@ -42,6 +44,8 @@ weather['summary'] = forecast.currently().summary
 weather['temperature'] = "%0.0f" % round(forecast.currently().temperature)
 weather['hightemp'] = "%0.0f" % round(forecast.daily().data[0].temperatureMax)
 weather['lowtemp'] = "%0.0f" % round(forecast.daily().data[0].temperatureMin)
+weather['sunriseTime'] = "%d" % calendar.timegm(forecast.daily().data[0].sunriseTime.timetuple())  # Is this really the most efficient way to do this conversion?
+weather['sunsetTime'] = "%d" % calendar.timegm(forecast.daily().data[0].sunsetTime.timetuple())
 
 try:
   weather['icon'] = climacon[forecast.currently().icon]
