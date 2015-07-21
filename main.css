@@ -7,6 +7,15 @@ body {
   border: 0px;
 }
 
+@keyframes daytonight {
+    from {background-color: #2567C8;}
+    to {background-color: #000E3E;}
+}
+@keyframes nighttoday {
+    from {background-color: #000E3E;}
+    to {background-color: #2567C8;}
+}
+
 div.screen {
   width: 480px;
   height: 320px;

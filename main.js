@@ -1,4 +1,5 @@
 var weather = {};
+var daynight = "day";
 
 function onLoad(){
   weather['sunriseTime'] = 0;
@@ -55,6 +56,7 @@ function updateTime(){
   var timestamp = Date.parse(now)/1000;
   var hours = now.getHours();
   var minutes = now.getMinutes();
+  //timestamp = 1437445229 - 59;
   
   if(minutes < 10){
     minutes = "0" + minutes;
@@ -72,10 +74,30 @@ function updateTime(){
   //console.log("Sunrisetime: " + weather['sunriseTime']);
   //console.log("Sunsettime: " + weather['sunsetTime']);
   var screen = document.getElementById("screen");
+
+/*
   if(timestamp > weather['sunriseTime'] && timestamp < weather['sunsetTime']){
     screen.style.backgroundColor = "#2567C8";  // Day
   } else {
     screen.style.backgroundColor = "#000E3E";  // Night
+  }
+*/
+
+  if(timestamp > weather['sunriseTime'] - 1800 && timestamp < weather['sunsetTime'] - 1800 && daynight == "night"){
+    daynight = "day";
+    if(timestamp < weather['sunriseTime']){ // If the page is reloaded, only do the animation if it is still before sunrise
+      screen.style.animation = "nighttoday 3600s";
+    }
+    screen.style.backgroundColor = "#2567C8";
+    console.log("Transitioning to day");
+  }
+  else if(timestamp < weather['sunriseTime'] - 1800 || timestamp > weather['sunsetTime'] - 1800 && daynight == "day"){
+    daynight = "night";
+    if(timestamp < weather['sunsetTime']){ // If the page is reloaded, only do the animation if it is still before sunset
+      screen.style.animation = "daytonight 3600s";
+    }
+    screen.style.backgroundColor = "#000E3E";
+    console.log("Transitioning to night: " + timestamp);
   }
   
   setTimeout(function(){updateTime()}, 500);
