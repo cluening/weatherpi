@@ -4,6 +4,8 @@ var daynight = "day";
 function onLoad(){
   weather['sunriseTime'] = 0;
   weather['sunsetTime'] = Number.MAX_VALUE;
+//  weather['sunriseTime'] = 1437393876;
+//  weather['sunsetTime'] = 1437445229;
   updateTime();
   updateWeather();
 }
@@ -56,7 +58,7 @@ function updateTime(){
   var timestamp = Date.parse(now)/1000;
   var hours = now.getHours();
   var minutes = now.getMinutes();
-  //timestamp = 1437445229 - 59;
+  //timestamp = 1437445229 + 1;
   
   if(minutes < 10){
     minutes = "0" + minutes;
@@ -83,21 +85,23 @@ function updateTime(){
   }
 */
 
-  if(timestamp > weather['sunriseTime'] - 1800 && timestamp < weather['sunsetTime'] - 1800 && daynight == "night"){
+  if((timestamp > weather['sunriseTime'] - 3600 && timestamp < weather['sunsetTime']) && daynight == "night"){
     daynight = "day";
-    if(timestamp < weather['sunriseTime']){ // If the page is reloaded, only do the animation if it is still before sunrise
+    console.log("Transitioning to day: " + timestamp + " (sunriseTime: " + weather['sunriseTime'] + ", sunsetTime: " + weather['sunsetTime']);
+    if(timestamp < weather['sunriseTime'] - 1800){ // If the page is reloaded, only do the animation if it is still before sunriseish
       screen.style.animation = "nighttoday 3600s";
+      console.log("Doing day animation: " + timestamp);
     }
     screen.style.backgroundColor = "#2567C8";
-    console.log("Transitioning to day");
   }
-  else if(timestamp < weather['sunriseTime'] - 1800 || timestamp > weather['sunsetTime'] - 1800 && daynight == "day"){
+  else if((timestamp < weather['sunriseTime'] - 3600 || timestamp > weather['sunsetTime']) && daynight == "day"){
     daynight = "night";
-    if(timestamp < weather['sunsetTime']){ // If the page is reloaded, only do the animation if it is still before sunset
+    console.log("Transitioning to night: " + timestamp);
+    if(timestamp < weather['sunsetTime'] + 1800){ // If the page is reloaded, only do the animation if it is still before sunsetish
       screen.style.animation = "daytonight 3600s";
+      console.log("Doing night animation: " + timestamp + " (sunriseTime: " + weather['sunriseTime'] + ", sunsetTime: " + weather['sunsetTime']);
     }
     screen.style.backgroundColor = "#000E3E";
-    console.log("Transitioning to night: " + timestamp);
   }
   
   setTimeout(function(){updateTime()}, 500);
