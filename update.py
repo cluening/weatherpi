@@ -44,8 +44,8 @@ weather['summary'] = forecast.currently().summary
 weather['temperature'] = "%0.0f" % round(forecast.currently().temperature)
 weather['hightemp'] = "%0.0f" % round(forecast.daily().data[0].temperatureMax)
 weather['lowtemp'] = "%0.0f" % round(forecast.daily().data[0].temperatureMin)
-weather['sunriseTime'] = "%d" % calendar.timegm(forecast.daily().data[0].sunriseTime.timetuple())  # Is this really the most efficient way to do this conversion?
-weather['sunsetTime'] = "%d" % calendar.timegm(forecast.daily().data[0].sunsetTime.timetuple())
+weather['sunriseTime'] = calendar.timegm(forecast.daily().data[0].sunriseTime.timetuple())  # Is this really the most efficient way to do this conversion?
+weather['sunsetTime'] = calendar.timegm(forecast.daily().data[0].sunsetTime.timetuple())
 weather['hourlysummary'] = forecast.hourly().summary
 
 try:
