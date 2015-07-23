@@ -16,7 +16,7 @@ function updateWeather(){
 
   Httpreq.onload = weatherHandler;
   Httpreq.open("GET", url);
-  Httpreq.send();     
+  Httpreq.send();
 }
 
 function weatherHandler(){
@@ -41,7 +41,6 @@ function updateWeatherDisplay(weatherjson){
   hightemp.textContent = weather['hightemp'];
   lowtemp.textContent = weather['lowtemp'];
   hourlysummary.textContent = weather['hourlysummary'];
-  //screen.style.background = "radial-gradient(at top, #012F68, #000E3E)";
   console.log("Sunrisetime: " + weather['sunriseTime']);
   console.log("Sunsettime: " + weather['sunsetTime']);
   //if(curtime > weather['sunriseTime'] && curtime < weather['sunsetTime']){
