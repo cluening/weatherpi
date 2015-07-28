@@ -33,7 +33,7 @@ function updateWeatherDisplay(weatherjson){
   var screen = document.getElementById("screen");
   var hourlysummary = document.getElementById("hourlysummary");
   var curtime = Math.floor(Date.now()/1000); // Convert from milliseconds
-  console.log("Time: " + curtime);
+  //console.log("Time: " + curtime);
   
   iconspan.className = weather['icon'];
   temperaturespan.textContent = weather['temperature'];
@@ -41,8 +41,8 @@ function updateWeatherDisplay(weatherjson){
   hightemp.textContent = weather['hightemp'];
   lowtemp.textContent = weather['lowtemp'];
   hourlysummary.textContent = weather['hourlysummary'];
-  console.log("Sunrisetime: " + weather['sunriseTime']);
-  console.log("Sunsettime: " + weather['sunsetTime']);
+  //console.log("Sunrisetime: " + weather['sunriseTime']);
+  //console.log("Sunsettime: " + weather['sunsetTime']);
   //if(curtime > weather['sunriseTime'] && curtime < weather['sunsetTime']){
   //  screen.style.backgroundColor = "#2567C8";  // Day
   //} else {
@@ -77,12 +77,12 @@ function updateTime(){
 
   if((timestamp > weather['sunriseTime'] - 3600 && timestamp < weather['sunsetTime']) && daynight != "day"){
     if(timestamp < weather['sunriseTime']){
-      console.log("Doing day transition");
+      //console.log("Doing day transition");
       //screen.style.backgroundColor = backgroundColor("rgb(0, 14, 62)", "rgb(37, 103, 200)", weather['sunriseTime'] - timestamp, 3600);
       screen.style.backgroundColor = backgroundColor("rgb(0, 14, 62)", "rgb(37, 103, 200)", timestamp - (weather['sunriseTime'] - 3600), 3600);
     }
     else if(timestamp > weather['sunriseTime']){
-      console.log("Jumping straight ahead to day: " + timestamp);
+      //console.log("Jumping straight ahead to day: " + timestamp);
       screen.style.backgroundColor = "rgb(37, 103, 200)";
       daynight = "day";
     }
@@ -90,17 +90,17 @@ function updateTime(){
   else if(timestamp > weather['sunsetTime'] && daynight != "night"){
     //console.log(timestamp + " (sunriseTime: " + weather['sunriseTime'] + ", sunsetTime: " + weather['sunsetTime']);
     if(timestamp < weather['sunsetTime'] + 3600){
-      console.log("Doing night transition");
+      //console.log("Doing night transition");
       screen.style.backgroundColor = backgroundColor("rgb(37, 103, 200)", "rgb(0, 14, 62)", timestamp - weather['sunsetTime'], 3600);
     }
     else if(timestamp > weather['sunsetTime'] + 3600){
-      console.log("Jumping straight ahead to night: " + timestamp);
+      //console.log("Jumping straight ahead to night: " + timestamp);
       screen.style.backgroundColor = "rgb(0, 14, 62)";
       daynight = "night";
     }
   }
   else if(timestamp < weather['sunriseTime'] - 3600 && daynight != "night"){
-    console.log("Jumping straight ahead to before dawn: " + timestamp);
+    //console.log("Jumping straight ahead to before dawn: " + timestamp);
     screen.style.backgroundColor = "rgb(0, 14, 62)";
     daynight = "night";
   }
