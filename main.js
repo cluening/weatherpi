@@ -1,15 +1,21 @@
 var weather = {};
 var daynight = "day";
 
+/*
+ *  Kick off the initial time and weather updates.
+ */
 function onLoad(){
   weather['sunriseTime'] = 0;
   weather['sunsetTime'] = Number.MAX_VALUE;
   //weather['sunriseTime'] = 1437826098;
   //weather['sunsetTime'] = 1437877032;
-  updateTime();
+  updateTimeDisplay();
   updateWeather();
 }
 
+/*
+ *  Wrapper function that kicks off the weather update process
+ */
 function updateWeather(){
   var url = "currentweather.json";
   var Httpreq = new XMLHttpRequest();
@@ -21,6 +27,9 @@ function updateWeather(){
   Httpreq.send();
 }
 
+/*
+ *  Onload handling callback for the HTTP request object
+ */
 function weatherOnloadHandler(){
   if(this.readyState === 4){
     if(this.status === 200){
@@ -29,17 +38,30 @@ function weatherOnloadHandler(){
       console.error(this.statusText);
     }
   }
+  setTimeout(function(){updateWeather()}, 15*60*1000);
 }
 
+/*
+ *  Error handling callback for the HTTP request object
+ */
 function weatherErrorHandler(){
+  // If the HTTP request fails, log the failure and try again in 15 minutes
   console.error(this.statusText);
   setTimeout(function(){updateWeather()}, 15*60*1000);
 }
 
+/*
+ *  Timeout handling callback for the HTTP request object
+ */
 function weatherTimeoutHandler(){
+  // If the HTTP request times out, just try again in 15 minutes
+  console.log("HTTP request timed out.  Trying again in 15 minutes.");
   setTimeout(function(){updateWeather()}, 15*60*1000);
 }
 
+/*
+ *  Update the weather part of the display
+ */
 function updateWeatherDisplay(weatherjson){
   weather = JSON.parse(weatherjson);
   var iconspan = document.getElementById("icon");
@@ -60,16 +82,12 @@ function updateWeatherDisplay(weatherjson){
   hourlysummary.textContent = weather['hourlysummary'];
   //console.log("Sunrisetime: " + weather['sunriseTime']);
   //console.log("Sunsettime: " + weather['sunsetTime']);
-  //if(curtime > weather['sunriseTime'] && curtime < weather['sunsetTime']){
-  //  screen.style.backgroundColor = "#2567C8";  // Day
-  //} else {
-  //  screen.style.backgroundColor = "#000E3E";  // Night
-  //}
-  
-  setTimeout(function(){updateWeather()}, 15*60*1000);
 }
 
-function updateTime(){
+/*
+ *  Update the time part of the display
+ */
+function updateTimeDisplay(){
   var now = new Date();
   var timestamp = Date.parse(now)/1000;
   var hours = now.getHours();
@@ -122,14 +140,16 @@ function updateTime(){
     daynight = "night";
   }
 
-  setTimeout(function(){updateTime()}, 500);
+  setTimeout(function(){updateTimeDisplay()}, 500);
 }
 
-// FIXME: This function could use some major optimization
+/*
+ *  Calculate a background color based on start/end colors, number of time steps, and
+ *  current step number.
+ *  startcolor and endcolor are a string in the form "rgb(r, g, b)"
+ */
 function backgroundColor(startcolor, endcolor, timestep, numsteps){
-  /* Takes colors in the form rgb(r, g, b) */
-  // From stackoverflow: getComputedStyle(timediv).color.match(/\d+/g)
-
+  // FIXME: This function could use some major optimization
   var startrgb = startcolor.match(/\d+/g).map( function( num ){ return parseInt( num, 10 ) } );
   var endrgb = endcolor.match(/\d+/g).map( function( num ){ return parseInt( num, 10 ) } );
   var currgb = [];
