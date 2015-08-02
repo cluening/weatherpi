@@ -14,13 +14,30 @@ function updateWeather(){
   var url = "currentweather.json";
   var Httpreq = new XMLHttpRequest();
 
-  Httpreq.onload = weatherHandler;
+  Httpreq.onload = weatherOnloadHandler;
+  Httpreq.onerror = weatherErrorHandler;
+  Httpreq.ontimeout = weatherTimeoutHandler;
   Httpreq.open("GET", url);
   Httpreq.send();
 }
 
-function weatherHandler(){
-  updateWeatherDisplay(this.responseText);
+function weatherOnloadHandler(){
+  if(this.readyState === 4){
+    if(this.status === 200){
+      updateWeatherDisplay(this.responseText);
+    } else {
+      console.error(this.statusText);
+    }
+  }
+}
+
+function weatherErrorHandler(){
+  console.error(this.statusText);
+  setTimeout(function(){updateWeather()}, 15*60*1000);
+}
+
+function weatherTimeoutHandler(){
+  setTimeout(function(){updateWeather()}, 15*60*1000);
 }
 
 function updateWeatherDisplay(weatherjson){
