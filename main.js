@@ -14,6 +14,14 @@ function onLoad(){
 }
 
 /*
+ *  Handle clicks on the screen
+ */
+function screenOnClick(){
+  console.log("Somebody clicked!  Reloading the page.");
+  window.location.reload(true);
+}
+
+/*
  *  Wrapper function that kicks off the weather update process
  */
 function updateWeather(){
@@ -69,7 +77,7 @@ function updateWeatherDisplay(weatherjson){
   var tempdelta = document.getElementById("tempdelta");
   var hightemp = document.getElementById("hightemp");
   var lowtemp = document.getElementById("lowtemp");
-  var screen = document.getElementById("screen");
+  var screen = document.getElementById("defaultscreen");
   var hourlysummary = document.getElementById("hourlysummary");
   var curtime = Math.floor(Date.now()/1000); // Convert from milliseconds
   //console.log("Time: " + curtime);
@@ -108,7 +116,7 @@ function updateTimeDisplay(){
   //console.log("Time: " + timestamp);
   //console.log("Sunrisetime: " + weather['sunriseTime']);
   //console.log("Sunsettime: " + weather['sunsetTime']);
-  var screen = document.getElementById("screen");
+  var screen = document.getElementById("defaultscreen");
 
   if((timestamp > weather['sunriseTime'] - 3600 && timestamp < weather['sunsetTime']) && daynight != "day"){
     if(timestamp < weather['sunriseTime']){
