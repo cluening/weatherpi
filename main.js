@@ -1,5 +1,6 @@
 var weather = {};
 var daynight = "day";
+var weeklyscreentimeout;
 
 /*
  *  Kick off the initial time and weather updates.
@@ -16,8 +17,26 @@ function onLoad(){
 /*
  *  Handle clicks on the screen
  */
-function screenOnClick(){
-  console.log("Somebody clicked!  Reloading the page.");
+function defaultscreenOnClick(){
+  console.log("Showing the weekly screen.");
+  //window.location.reload(true);
+  document.getElementById("weeklyscreen").style.display = "inline";
+  document.getElementById("defaultscreen").style.WebkitFilter = "blur(10px)";
+  weeklyscreentimeout = setTimeout(weeklyscreenOnClick, 30*1000);
+}
+
+function weeklyscreenOnClick(){
+  console.log("Hiding weekly screen.");
+  clearTimeout(weeklyscreentimeout); // in case somebody clicks to close this screen
+  document.getElementById("weeklyscreen").style.display = "none";
+  document.getElementById("defaultscreen").style.WebkitFilter = "blur(0px)";
+}
+
+/*
+ *  Reload the page when the reload button is pressed
+ */
+function reloadPage(){
+  console.log("Reloading the page");
   window.location.reload(true);
 }
 
@@ -72,6 +91,8 @@ function weatherTimeoutHandler(){
  */
 function updateWeatherDisplay(weatherjson){
   weather = JSON.parse(weatherjson);
+  
+  // Update the current conditions
   var iconspan = document.getElementById("icon");
   var temperaturespan = document.getElementById("temperature");
   var tempdelta = document.getElementById("tempdelta");
@@ -90,6 +111,24 @@ function updateWeatherDisplay(weatherjson){
   hourlysummary.textContent = weather['hourlysummary'];
   //console.log("Sunrisetime: " + weather['sunriseTime']);
   //console.log("Sunsettime: " + weather['sunsetTime']);
+  
+  // Update the weekly forecast
+  document.getElementById("day1name").textContent = weather['day1name'];
+  document.getElementById("day2name").textContent = weather['day2name'];
+  document.getElementById("day3name").textContent = weather['day3name'];
+  
+  document.getElementById("day1icon").className = weather['day1icon'];
+  document.getElementById("day2icon").className = weather['day2icon'];
+  document.getElementById("day3icon").className = weather['day3icon'];
+  
+  document.getElementById("day1lowtemp").textContent = weather['day1lowtemp'];
+  document.getElementById("day1hightemp").textContent = weather['day1hightemp'];
+  document.getElementById("day2lowtemp").textContent = weather['day2lowtemp'];
+  document.getElementById("day2hightemp").textContent = weather['day2hightemp'];
+  document.getElementById("day3lowtemp").textContent = weather['day3lowtemp'];
+  document.getElementById("day3hightemp").textContent = weather['day3hightemp'];
+  
+  document.getElementById("dailysummary").textContent = weather['dailysummary'];
 }
 
 /*

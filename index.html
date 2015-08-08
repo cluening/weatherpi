@@ -7,7 +7,7 @@
     <script src="main.js"></script>
   </head>
   <body onload="onLoad()">
-    <div class="screen" id="defaultscreen" onclick="screenOnClick()">
+    <div class="screen" id="defaultscreen" onclick="defaultscreenOnClick()">
       <div class="time" id="time">--:--</div>
       <div class="conditions">
         <span class="climacon cloud refresh" id="icon"></span>
@@ -19,7 +19,28 @@
       <div class="highlow">
         <span class="highlow"><sup><span id="hightemp">--</span>&deg;</sup>/<sub><span id="lowtemp">--</span>&deg;</sub></span>
       </div>
-      <div class="hourlysummary"><span id="hourlysummary">--- --- ---</span></div>
+      <div class="summary"><span id="hourlysummary">--- --- ---</span></div>
+    </div>
+    <div class="screen" id="weeklyscreen" onclick="weeklyscreenOnClick()">
+      <div class="threedayforecast">
+        <div class="dayforecast" id="day1">
+          <span class="dayname" id="day1name">---</span><BR>
+          <span class="climacon cloud refresh" id="day1icon"></span><BR>
+          <span class="dailyhighlow"><span id="day1lowtemp">--</span>&deg; / <span id="day1hightemp">--</span>&deg;</span>
+        </div>
+        <div class="dayforecast" id="day2">
+          <span class="dayname" id="day2name">---</span><BR>
+          <span class="climacon cloud refresh" id="day2icon"></span><BR>
+          <span class="dailyhighlow"><span id="day2lowtemp">--</span>&deg; / <span id="day2hightemp">--</span>&deg;</span>
+        </div>
+        <div class="dayforecast" id="day3">
+          <span class="dayname" id="day3name">---</span><BR>
+          <span class="climacon cloud refresh" id="day3icon"></span><BR>
+          <span class="dailyhighlow"><span id="day3lowtemp">--</span>&deg; / <span id="day3hightemp">--</span>&deg;</span>
+        </div>
+      </div>
+      <div class="summary" id="dailysummary"><span id="dailysummary">--- --- ---</span></div>
+      <span class="reloadbutton" onClick="reloadPage()">&#10227;</span>
     </div>
   </body>
 </html>

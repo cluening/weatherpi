@@ -8,6 +8,9 @@ body {
 }
 
 div.screen {
+  position: absolute;
+  top: 0px;
+  left: 0px;
   width: 480px;
   height: 320px;
   cursor: none;
@@ -17,7 +20,12 @@ div.screen {
   /*background: radial-gradient(at top, #91D4F1, #2567C8);*/
   /*background: radial-gradient(at top, #012F68, #000E3E);*/
 }
- 
+
+#weeklyscreen {
+  display: none;
+  background-color: rgba(27, 103, 200, .7);
+}
+
 div.time {
   /*margin-top: 5%;*/
   font-size: 140px;
@@ -40,10 +48,22 @@ div.highlow {
   float: right;
 }
 
-div.hourlysummary {
+div.summary {
   clear: both;
   text-align: center;
   font-size: 18px;
+}
+
+div.summary#dailysummary {
+  padding-top: 1em;
+}
+
+span.reloadbutton {
+  float: right;
+  font-size: 40px;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
 }
 
 span.highlow {
@@ -52,4 +72,24 @@ span.highlow {
 
 span.temperature {
   font-size: 50px;
+}
+
+span.dayname {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+span.dailyhighlow {
+  font-size: 22px;
+}
+
+div.dayforecast {
+  width: 160px;
+  float: left;
+  text-align: center;
+  font-size: 150px;
+}
+
+span.dayforecast {
+  font-size: 150px;
 }
