@@ -58,12 +58,34 @@ div.summary#dailysummary {
   padding-top: 1em;
 }
 
+div.reloadbutton {
+  position: absolute;
+  height: 120px;
+  width: 120px;
+  bottom: 0px;
+  right: 0px;
+}
+
 span.reloadbutton {
-  float: right;
   font-size: 40px;
   position: absolute;
   bottom: 0px;
-  right: 0px;
+  right: 5px;
+}
+
+div.settingsbutton {
+  position: absolute;
+  height: 120px;
+  width: 120px;
+  bottom: 0px;
+  left: 0px;
+}
+
+span.settingsbutton {
+  font-size: 40px;
+  position: absolute;
+  bottom: 0px;
+  left: 5px;
 }
 
 span.highlow {
