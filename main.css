@@ -26,6 +26,11 @@ div.screen {
   background-color: rgba(27, 103, 200, .7);
 }
 
+#settingsscreen {
+  display: none;
+  background-color: rgba(27, 103, 200, .7);
+}
+
 div.time {
   /*margin-top: 5%;*/
   font-size: 140px;
@@ -114,4 +119,9 @@ div.dayforecast {
 
 span.dayforecast {
   font-size: 150px;
+}
+
+div.settingsmenu {
+  text-align: center;
+  font-size: 40px;
 }

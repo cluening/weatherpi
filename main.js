@@ -41,6 +41,14 @@ function reloadPage(){
 }
 
 /*
+ * Display the settings screen when the settings button is pressed
+ */
+function displaySettingsScreen(){
+  console.log("Displaying settings screen");
+  document.getElementById("settingsscreen").style.display = "inline";
+}
+
+/*
  *  Wrapper function that kicks off the weather update process
  */
 function updateWeather(){
