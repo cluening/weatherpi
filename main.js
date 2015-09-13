@@ -35,17 +35,37 @@ function weeklyscreenOnClick(){
 /*
  *  Reload the page when the reload button is pressed
  */
-function reloadPage(){
+function reloadPage(event){
   console.log("Reloading the page");
   window.location.reload(true);
 }
 
 /*
- * Display the settings screen when the settings button is pressed
+ *  Display the settings screen when the settings button is pressed
  */
-function displaySettingsScreen(){
+function displaySettingsScreen(event){
+  event.stopPropagation();
   console.log("Displaying settings screen");
+  clearTimeout(weeklyscreentimeout);
+  document.getElementById("weeklyscreen").style.display = "none";
   document.getElementById("settingsscreen").style.display = "inline";
+}
+
+/*
+ *  Close settings screen when x button is clicked
+ */
+function closeSettingsScreen(event){
+  event.stopPropagation();
+  document.getElementById("settingsscreen").style.display = "none";
+  document.getElementById("defaultscreen").style.WebkitFilter = "blur(0px)";
+}
+
+/*
+ *  Close the weatherpi window
+ */
+function closeWeatherPi(event){
+  console.log("Trying to close window");
+  this.window.close();
 }
 
 /*
@@ -54,6 +74,8 @@ function displaySettingsScreen(){
 function updateWeather(){
   var url = "currentweather.json";
   var Httpreq = new XMLHttpRequest();
+
+  console.log("Grabbing a weather update");
 
   Httpreq.onload = weatherOnloadHandler;
   Httpreq.onerror = weatherErrorHandler;

@@ -8,7 +8,7 @@
   </head>
   <body onload="onLoad()">
    <!-- Default Screen -->
-    <div class="screen" id="defaultscreen" onclick="defaultscreenOnClick()">
+    <div class="screen" id="defaultscreen" onclick="defaultscreenOnClick(event)">
       <div class="time" id="time">--:--</div>
       <div class="conditions">
         <span class="climacon cloud refresh" id="icon"></span>
@@ -23,8 +23,8 @@
       <div class="summary"><span id="hourlysummary">--- --- ---</span></div>
     </div>
 
-   <!-- Weekly Forecast Screen -->
-    <div class="screen" id="weeklyscreen" onclick="weeklyscreenOnClick()">
+    <!-- Weekly Forecast Screen -->
+    <div class="screen" id="weeklyscreen" onclick="weeklyscreenOnClick(event)">
       <div class="threedayforecast">
         <div class="dayforecast" id="day1">
           <span class="dayname" id="day1name">---</span><BR>
@@ -43,13 +43,15 @@
         </div>
       </div>
       <div class="summary" id="dailysummary"><span id="dailysummary">--- --- ---</span></div>
-      <div class="settingsbutton" onClick="displaySettingsScreen()"><span class="settingsbutton">&#9881;</span></div>
-      <div class="reloadbutton" onClick="reloadPage()"><span class="reloadbutton">&#10227;</span></div>
+      <div class="settingsbutton" onclick="displaySettingsScreen(event)"><span class="settingsbutton">&#9881;</span></div>
+      <div class="reloadbutton" onclick="reloadPage(event)"><span class="reloadbutton">&#10227;</span></div>
     </div>
 
+    <!-- Settings Screen -->
     <div class="screen" id="settingsscreen">
       <div class="settingsmenu">
-        Quit WeatherPi
+        <div class="closebutton" onclick="closeSettingsScreen(event)"><span class="closebutton">&#10006;</span></div>
+        <span class="settingsmenuoption" onclick="closeWeatherPi(event)">Quit WeatherPi</span>
       </div>
     </div>
 

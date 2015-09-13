@@ -23,12 +23,12 @@ div.screen {
 
 #weeklyscreen {
   display: none;
-  background-color: rgba(27, 103, 200, .7);
+  background-color: rgba(27, 103, 200, 1.0);
 }
 
 #settingsscreen {
   display: none;
-  background-color: rgba(27, 103, 200, .7);
+  background-color: rgba(27, 103, 200, 1.0);
 }
 
 div.time {
@@ -69,6 +69,10 @@ div.reloadbutton {
   width: 120px;
   bottom: 0px;
   right: 0px;
+}
+
+span.tempdelta {
+  font-size: 18px;
 }
 
 span.reloadbutton {
@@ -124,4 +128,8 @@ span.dayforecast {
 div.settingsmenu {
   text-align: center;
   font-size: 40px;
+}
+
+div.closebutton {
+  float: right;
 }
