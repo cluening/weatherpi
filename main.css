@@ -35,6 +35,15 @@ div.screen {
   background-color: rgba(27, 103, 200, 1.0);
 }
 
+div.alertbar {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  background-color: #FF0000;
+  text-align: center;
+}
+
 div.time {
   /*margin-top: 5%;*/
   font-size: 140px;

@@ -42,6 +42,7 @@ currentweatherfile.close()
 
 print "Had: %s" % weatherprev['temperature']
 
+weather['updatetime'] = int(time.time())
 weather['summary'] = forecast.currently().summary
 weather['temperature'] = "%0.0f" % round(forecast.currently().temperature)
 weather['hightemp'] = "%0.0f" % round(forecast.daily().data[0].temperatureMax)

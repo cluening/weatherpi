@@ -133,6 +133,12 @@ function updateWeatherDisplay(weatherjson){
   var curtime = Math.floor(Date.now()/1000); // Convert from milliseconds
   //console.log("Time: " + curtime);
   
+  if(curtime - weather['updatetime'] > 7200){
+    document.getElementById("alertbar").textContent = "Last updated more than 2 hours ago";
+  } else {
+    document.getElementById("alertbar").textContent = "";
+  }
+  
   iconspan.className = weather['icon'];
   temperaturespan.textContent = weather['temperature'];
   tempdelta.textContent = weather['tempdelta'];
