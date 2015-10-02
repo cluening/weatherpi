@@ -134,10 +134,9 @@ function updateWeatherDisplay(weatherjson){
   //console.log("Time: " + curtime);
   
   if(curtime - weather['updatetime'] > 7200){
-    document.getElementById("alertbar").textContent = "Last updated more than 2 hours ago";
-  } else {
-    document.getElementById("alertbar").textContent = "";
+    weather['alerts'].unshift("Last updated more than 2 hours ago");
   }
+  document.getElementById("alertbar").textContent = weather['alerts'][0];
   
   iconspan.className = weather['icon'];
   temperaturespan.textContent = weather['temperature'];

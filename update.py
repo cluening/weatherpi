@@ -61,6 +61,10 @@ weather['day3lowtemp'] = "%0.0f" % round(forecast.daily().data[3].temperatureMin
 weather['day3name'] = weekdays[forecast.daily().data[3].time.weekday()]
 weather['dailysummary'] = forecast.daily().summary
 
+weather['alerts'] = []
+for alert in forecast.alerts():
+  weather['alerts'].append(alert.title)
+
 try:
   weather['icon'] = climacon[forecast.currently().icon]
 except KeyError:
