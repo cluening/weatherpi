@@ -41,9 +41,9 @@ div.alertbar {
   left: 0px;
   width: 100%;
   background-color: #FF0000;
+  font-size: 18px;
   text-align: center;
   text-shadow: none;
-  font-weight: bold;
 }
 
 div.time {
