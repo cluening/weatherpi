@@ -103,7 +103,7 @@ function weatherOnloadHandler(){
  */
 function weatherErrorHandler(){
   // If the HTTP request fails, log the failure and try again in 15 minutes
-  console.error(this.statusText);
+  console.error("HTTP request failed.  " + this.statusText);
   setTimeout(function(){updateWeather()}, 15*60*1000);
 }
 
@@ -133,10 +133,13 @@ function updateWeatherDisplay(weatherjson){
   var curtime = Math.floor(Date.now()/1000); // Convert from milliseconds
   //console.log("Time: " + curtime);
   
+  console.log("Difference: " + (curtime - weather['updatetime']));
   if(curtime - weather['updatetime'] > 7200){
+    console.log("Adding update time message to alert stack");
     weather['alerts'].unshift("Last updated more than 2 hours ago");
   }
   if(weather['alerts'].length > 0){
+    console.log("Hey look, an alert!");
     document.getElementById("alertbar").textContent = weather['alerts'][0];
   }
   
