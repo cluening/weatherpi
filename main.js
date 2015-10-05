@@ -90,7 +90,8 @@ function updateWeather(){
 function weatherOnloadHandler(){
   if(this.readyState === 4){
     if(this.status === 200){
-      updateWeatherDisplay(this.responseText);
+      weather = JSON.parse(this.responseText);
+      updateWeatherDisplay();
     } else {
       console.error(this.statusText);
     }
@@ -104,6 +105,7 @@ function weatherOnloadHandler(){
 function weatherErrorHandler(){
   // If the HTTP request fails, log the failure and try again in 15 minutes
   console.error("HTTP request failed.  " + this.statusText);
+  updateWeatherDisplay();
   setTimeout(function(){updateWeather()}, 15*60*1000);
 }
 
@@ -113,16 +115,16 @@ function weatherErrorHandler(){
 function weatherTimeoutHandler(){
   // If the HTTP request times out, just try again in 15 minutes
   console.log("HTTP request timed out.  Trying again in 15 minutes.");
+  updateWeatherDisplay();
   setTimeout(function(){updateWeather()}, 15*60*1000);
 }
 
 /*
  *  Update the weather part of the display
  */
-function updateWeatherDisplay(weatherjson){
-  weather = JSON.parse(weatherjson);
-  
+function updateWeatherDisplay(){
   // Update the current conditions
+  var staledataalert = "Last updated more than 2 hours ago";
   var iconspan = document.getElementById("icon");
   var temperaturespan = document.getElementById("temperature");
   var tempdelta = document.getElementById("tempdelta");
@@ -133,14 +135,18 @@ function updateWeatherDisplay(weatherjson){
   var curtime = Math.floor(Date.now()/1000); // Convert from milliseconds
   //console.log("Time: " + curtime);
   
-  console.log("Difference: " + (curtime - weather['updatetime']));
-  if(curtime - weather['updatetime'] > 7200){
-    console.log("Adding update time message to alert stack");
-    weather['alerts'].unshift("Last updated more than 2 hours ago");
+  //console.log("Difference: " + (curtime - weather['updatetime']));
+  if(curtime - weather['updatetime'] > 60*60*2){
+    //console.log("Adding update time message to alert stack");
+    if(weather['alerts'].indexOf(staledataalert) < 0){
+      weather['alerts'].unshift(staledataalert);
+    }
   }
   if(weather['alerts'].length > 0){
-    console.log("Hey look, an alert!");
+    //console.log("Hey look, an alert!");
     document.getElementById("alertbar").textContent = weather['alerts'][0];
+  } else {
+    document.getElementById("alertbar").textContent = "";
   }
   
   iconspan.className = weather['icon'];
