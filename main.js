@@ -175,6 +175,8 @@ function updateWeatherDisplay(){
   document.getElementById("day3hightemp").textContent = weather['day3hightemp'];
   
   document.getElementById("dailysummary").textContent = weather['dailysummary'];
+  
+  document.getElementById("lastupdatedate").textContent = Date(weather['updatetime']);
 }
 
 /*
