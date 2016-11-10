@@ -138,13 +138,13 @@ function updateWeatherDisplay(){
   //console.log("Difference: " + (curtime - weather['updatetime']));
   if(curtime - weather['updatetime'] > 60*60*2){
     //console.log("Adding update time message to alert stack");
-    if(weather['alerts'].indexOf(staledataalert) < 0){
-      weather['alerts'].unshift(staledataalert);
+    if(weather['alerttitles'].indexOf(staledataalert) < 0){
+      weather['alerttitles'].unshift(staledataalert);
     }
   }
-  if(weather['alerts'].length > 0){
+  if(weather['alerttitles'].length > 0){
     //console.log("Hey look, an alert!");
-    document.getElementById("alertbar").textContent = weather['alerts'][0];
+    document.getElementById("alertbar").textContent = weather['alerttitles'][0];
   } else {
     document.getElementById("alertbar").textContent = "";
   }

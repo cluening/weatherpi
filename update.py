@@ -8,6 +8,9 @@ import time
 import calendar
 import datetime
 
+import urllib
+#urllib.disable_warnings()
+
 weather = {}
 
 config = ConfigParser.ConfigParser()
@@ -61,9 +64,11 @@ weather['day3lowtemp'] = "%0.0f" % round(forecast.daily().data[3].temperatureMin
 weather['day3name'] = weekdays[forecast.daily().data[3].time.weekday()]
 weather['dailysummary'] = forecast.daily().summary
 
-weather['alerts'] = []
+weather['alerttitles'] = []
+weather['alertdescriptions'] = []
 for alert in forecast.alerts():
-  weather['alerts'].append(alert.title)
+  weather['alerttitles'].append(alert.title)
+  weather['alertdescriptions'].append(alert.description)
 
 try:
   weather['icon'] = climacon[forecast.currently().icon]
