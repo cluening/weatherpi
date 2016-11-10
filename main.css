@@ -2,9 +2,9 @@ body {
   background-color: white;
   color: white;
   font-family: Tahoma, Verdana, Geneva, sans-serif;
-  text-shadow: 0px 2px 0px rgba(0, 0, 0, .3);
-  margin: 0px;
-  border: 0px;
+  text-shadow: 0vw .4vw 0vw rgba(0, 0, 0, .3);
+  margin: 0vw;
+  border: 0vw;
   -webkit-user-select: none;  /* Chrome all / Safari all */
   -moz-user-select: none;     /* Firefox all */
   -ms-user-select: none;      /* IE 10+ */
@@ -13,10 +13,10 @@ body {
 
 div.screen {
   position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 480px;
-  height: 320px;
+  top: 0vw;
+  left: 0vw;
+  width: 100%;
+  height: 100%;
   cursor: none;
   background-color: #2567C8;
   overflow: hidden;
@@ -42,25 +42,25 @@ div.screen {
 
 div.alertbar {
   position: absolute;
-  top: 0px;
-  left: 0px;
+  top: 0vw;
+  left: 0vw;
   width: 100%;
   background-color: #FF0000;
-  font-size: 18px;
+  font-size: 3.75vw;
   text-align: center;
   text-shadow: none;
 }
 
 div.time {
   /*margin-top: 5%;*/
-  font-size: 140px;
+  font-size: 29vw;
   font-weight: bold;
   text-align: center;
 }
 
 div.conditions {
   float: left;
-  font-size: 100px;
+  font-size: 21vw;
   width: 1em;
   text-align: center;
 }
@@ -76,7 +76,7 @@ div.highlow {
 div.summary {
   clear: both;
   text-align: center;
-  font-size: 18px;
+  font-size: 3.75vw;
 }
 
 div.summary#dailysummary {
@@ -85,69 +85,69 @@ div.summary#dailysummary {
 
 div.reloadbutton {
   position: absolute;
-  height: 120px;
-  width: 120px;
-  bottom: 0px;
-  right: 0px;
+  height: 25vw;
+  width: 25vw;
+  bottom: 0vw;
+  right: 0vw;
 }
 
 span.tempdelta {
-  font-size: 18px;
+  font-size: 3.75vw;
 }
 
 span.reloadbutton {
-  font-size: 40px;
+  font-size: 8.3vw;
   position: absolute;
-  bottom: 0px;
-  right: 5px;
+  bottom: 0vw;
+  right: 1vw;
 }
 
 div.settingsbutton {
   position: absolute;
-  height: 120px;
-  width: 120px;
-  bottom: 0px;
-  left: 0px;
+  height: 25vw;
+  width: 25vw;
+  bottom: 0vw;
+  left: 0vw;
 }
 
 span.settingsbutton {
-  font-size: 40px;
+  font-size: 8.3vw;
   position: absolute;
-  bottom: 0px;
-  left: 5px;
+  bottom: 0vw;
+  left: 1vw;
 }
 
 span.highlow {
-  font-size: 50px;
+  font-size: 10.4vw;
 }
 
 span.temperature {
-  font-size: 50px;
+  font-size: 10.4vw;
 }
 
 span.dayname {
-  font-size: 40px;
+  font-size: 8.3vw;
   font-weight: bold;
 }
 
 span.dailyhighlow {
-  font-size: 22px;
+  font-size: 4.6vw;
 }
 
 div.dayforecast {
-  width: 160px;
+  width: 33.3vw;
   float: left;
   text-align: center;
-  font-size: 150px;
+  font-size: 31.25vw;
 }
 
 span.dayforecast {
-  font-size: 150px;
+  font-size: 31.25vw;
 }
 
 div.settingsmenu {
   text-align: center;
-  font-size: 40px;
+  font-size: 8.3vw;
 }
 
 div.closebutton {
