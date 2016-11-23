@@ -125,6 +125,7 @@ function weatherTimeoutHandler(){
 function updateWeatherDisplay(){
   // Update the current conditions
   var staledataalert = "Last updated more than 2 hours ago";
+  var staledatadescription = "<BR>Last weather update time:<BR>"; // Time and date get added later
   var iconspan = document.getElementById("icon");
   var temperaturespan = document.getElementById("temperature");
   var tempdelta = document.getElementById("tempdelta");
@@ -139,14 +140,19 @@ function updateWeatherDisplay(){
   if(curtime - weather['updatetime'] > 60*60*2){
     //console.log("Adding update time message to alert stack");
     if(weather['alerttitles'].indexOf(staledataalert) < 0){
+      updatedate = new Date(weather['updatetime'] * 1000);
+      staledatadescription += updatedate;
       weather['alerttitles'].unshift(staledataalert);
+      weather['alertdescriptions'].unshift(staledatadescription);
     }
   }
   if(weather['alerttitles'].length > 0){
     //console.log("Hey look, an alert!");
     document.getElementById("alertbar").textContent = weather['alerttitles'][0];
+    document.getElementById("alertdescriptionbar").textContent = weather['alerttitles'][0];
   } else {
     document.getElementById("alertbar").textContent = "";
+    document.getElementById("alertdescriptionbar").textContent = "";
   }
   
   iconspan.className = weather['icon'];
@@ -177,6 +183,8 @@ function updateWeatherDisplay(){
   document.getElementById("dailysummary").textContent = weather['dailysummary'];
   
   document.getElementById("lastupdatedate").textContent = Date(weather['updatetime']);
+
+  document.getElementById("alertdescription").innerHTML = weather['alertdescriptions'][0];
 }
 
 /*
