@@ -20,9 +20,14 @@ function onLoad(){
 function defaultscreenOnClick(){
   console.log("Showing the weekly screen.");
   //window.location.reload(true);
-  document.getElementById("weeklyscreen").style.display = "inline";
+  if(weather["alerttitles"].length > 0){
+    document.getElementById("alertdescriptionscreen").style.display = "inline";
+    alertdescriptionscreentimeout = setTimeout(alertdescriptionscreenOnClick, 30*1000);
+  }else{
+    document.getElementById("weeklyscreen").style.display = "inline";
+    weeklyscreentimeout = setTimeout(weeklyscreenOnClick, 30*1000);
+  }
   document.getElementById("defaultscreen").style.WebkitFilter = "blur(10px)";
-  weeklyscreentimeout = setTimeout(weeklyscreenOnClick, 30*1000);
 }
 
 function weeklyscreenOnClick(){
@@ -30,6 +35,14 @@ function weeklyscreenOnClick(){
   clearTimeout(weeklyscreentimeout); // in case somebody clicks to close this screen
   document.getElementById("weeklyscreen").style.display = "none";
   document.getElementById("defaultscreen").style.WebkitFilter = "blur(0px)";
+}
+
+function alertdescriptionscreenOnClick(){
+  console.log("Hiding alert description screen.");
+  clearTimeout(alertdescriptionscreentimeout); // in case somebody clicks to close this screen
+  document.getElementById("alertdescriptionscreen").style.display = "none";
+  document.getElementById("weeklyscreen").style.display = "inline";
+  weeklyscreentimeout = setTimeout(weeklyscreenOnClick, 30*1000);
 }
 
 /*

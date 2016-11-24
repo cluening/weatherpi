@@ -36,7 +36,7 @@ div.screen {
 }
 
 #alertdescriptionscreen {
-  /*display: none;*/
+  display: none;
   font-size: 3.75vw;
   text-align: justify;
   background-color: rgba(27, 103, 200, 1.0);
