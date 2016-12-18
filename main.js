@@ -1,6 +1,7 @@
 var weather = {};
 var daynight = "day";
 var weeklyscreentimeout;
+var curalertdescription = 0;
 
 /*
  *  Kick off the initial time and weather updates.
@@ -21,6 +22,9 @@ function defaultscreenOnClick(){
   console.log("Showing the weekly screen.");
   //window.location.reload(true);
   if(weather["alerttitles"].length > 0){
+    curalertdescription = 0;
+    document.getElementById("alertdescriptionbar").textContent = weather['alerttitles'][0];
+    document.getElementById("alertdescription").innerHTML = weather['alertdescriptions'][0];
     document.getElementById("alertdescriptionscreen").style.display = "inline";
     alertdescriptionscreentimeout = setTimeout(alertdescriptionscreenOnClick, 30*1000);
   }else{
@@ -38,11 +42,17 @@ function weeklyscreenOnClick(){
 }
 
 function alertdescriptionscreenOnClick(){
-  console.log("Hiding alert description screen.");
-  clearTimeout(alertdescriptionscreentimeout); // in case somebody clicks to close this screen
-  document.getElementById("alertdescriptionscreen").style.display = "none";
-  document.getElementById("weeklyscreen").style.display = "inline";
-  weeklyscreentimeout = setTimeout(weeklyscreenOnClick, 30*1000);
+  if(weather["alerttitles"].length > curalertdescription + 1){
+    curalertdescription += 1;
+    document.getElementById("alertdescriptionbar").textContent = weather['alerttitles'][curalertdescription];
+    document.getElementById("alertdescription").innerHTML = weather['alertdescriptions'][curalertdescription];
+  }else{
+    console.log("Hiding alert description screen.");
+    clearTimeout(alertdescriptionscreentimeout); // in case somebody clicks to close this screen
+    document.getElementById("alertdescriptionscreen").style.display = "none";
+    document.getElementById("weeklyscreen").style.display = "inline";
+    weeklyscreentimeout = setTimeout(weeklyscreenOnClick, 30*1000);
+  }
 }
 
 /*
@@ -196,7 +206,7 @@ function updateWeatherDisplay(){
   document.getElementById("dailysummary").textContent = weather['dailysummary'];
   
   document.getElementById("lastupdatedate").textContent = Date(weather['updatetime']);
-
+  // FIXME: this line is probably redundant after moving it to the alert screen click callback
   document.getElementById("alertdescription").innerHTML = weather['alertdescriptions'][0];
 }
 
