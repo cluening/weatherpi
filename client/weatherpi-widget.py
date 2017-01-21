@@ -8,9 +8,9 @@ import signal, sys
 class MainWindow(Gtk.Window):
   def __init__(self):
     Gtk.Window.__init__(self)
-    self.set_type_hint(Gdk.WindowTypeHint.DOCK)
-    #self.fullscreen()
-    self.set_size_request(480, 320)
+    #self.set_type_hint(Gdk.WindowTypeHint.DOCK)
+    self.fullscreen()
+    #self.set_size_request(480, 320)
 
     WebKit.set_cache_model(WebKit.CacheModel.DOCUMENT_VIEWER)
     self.view = WebKit.WebView()
