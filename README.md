@@ -21,3 +21,7 @@ Some useful packages for making everything work:
 Also, don't forget to fix your timezone!
 
  - ``dpkg-reconfigure tzdata``
+
+And if you are using the official 7 inch touchscreen display, you might want to change the brightness.  This is a nice setting on mine:
+
+ - ``echo 128 > /sys/class/backlight/rpi_backlight/brightness``
