@@ -46,6 +46,7 @@ function alertdescriptionscreenOnClick(){
     curalertdescription += 1;
     document.getElementById("alertdescriptionbar").textContent = weather['alerttitles'][curalertdescription];
     document.getElementById("alertdescription").innerHTML = weather['alertdescriptions'][curalertdescription];
+    alertdescriptionscreentimeout = setTimeout(alertdescriptionscreenOnClick, 30*1000);
   }else{
     console.log("Hiding alert description screen.");
     clearTimeout(alertdescriptionscreentimeout); // in case somebody clicks to close this screen
