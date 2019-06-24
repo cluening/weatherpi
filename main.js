@@ -2,6 +2,7 @@ var weather = {};
 var daynight = "day";
 var weeklyscreentimeout;
 var curalertdescription = 0;
+var cardsloaded = false;
 
 /*
  *  Kick off the initial time and weather updates.
@@ -11,9 +12,16 @@ function onLoad(){
   weather['sunsetTime'] = Number.MAX_VALUE;
   //weather['sunriseTime'] = 1437826098;
   //weather['sunsetTime'] = 1437877032;
+
+  downloadCardHTML("defaultscreen", "weather.html"); 
+  downloadCardHTML("alertdescriptionscreen", "alert.html"); 
+  downloadCardHTML("settingsscreen", "settings.html"); 
+  downloadCardHTML("weeklyscreen", "weeklyforecast.html"); 
+
   updateTimeDisplay();
   updateWeather();
 }
+
 
 /*
  *  Handle clicks on the screen
@@ -229,8 +237,11 @@ function updateTimeDisplay(){
     hours = hours % 12;
   }
   
-  timespan = document.getElementById("time");
-  timespan.innerHTML = hours + ":" + minutes;
+  // FIXME: this check should be done before this function even gets called
+  if(cardsloaded == true){
+    timespan = document.getElementById("time");
+    timespan.innerHTML = hours + ":" + minutes;
+  }
   
   //console.log("Time: " + timestamp);
   //console.log("Sunrisetime: " + weather['sunriseTime']);
