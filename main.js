@@ -13,10 +13,15 @@ function onLoad(){
   //weather['sunriseTime'] = 1437826098;
   //weather['sunsetTime'] = 1437877032;
 
-  downloadCardHTML("weatherscreen", "weather.html"); 
-  downloadCardHTML("alertdescriptionscreen", "alert.html"); 
-  downloadCardHTML("settingsscreen", "settings.html"); 
-  downloadCardHTML("weeklyscreen", "weeklyforecast.html"); 
+  weathercard = new Card("weatherscreen", "weather.html");
+  alertcard = new Card("alertdescriptionscreen", "alert.html");
+  settingscard = new Card("settingsscreen", "settings.html");
+  weeklycard = new Card("weeklyscreen", "weeklyforecast.html");
+
+  weathercard.downloadCardHTML();
+  alertcard.downloadCardHTML();
+  settingscard.downloadCardHTML();
+  weeklycard.downloadCardHTML();
 
   updateTimeDisplay();
   updateWeather();

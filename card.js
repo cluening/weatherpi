@@ -1,23 +1,31 @@
 /*
+ *  The card object
+ */
+function Card(cardname, cardhtml){
+  this.name = cardname;
+  this.html = cardhtml;
+}
+
+/*
  *  Download a card's html
  */
-function downloadCardHTML(id, url){
+Card.prototype.downloadCardHTML = function(){
   var Httpreq = new XMLHttpRequest();
 
-  console.log("Grabbing a card");
+  console.log("Grabbing a card object's data");
 
-  Httpreq.id = id;
-  Httpreq.onload = cardOnloadHandler;
-  Httpreq.onerror = cardErrorHandler;
-  Httpreq.ontimeout = cardTimeoutHandler;
-  Httpreq.open("GET", url);
+  Httpreq.id = this.name;
+  Httpreq.onload = this.cardOnloadHandler;
+  Httpreq.onerror = this.cardErrorHandler;
+  Httpreq.ontimeout = this.cardTimeoutHandler;
+  Httpreq.open("GET", this.html);
   Httpreq.send();
 }
 
 /*
  *  Onload handling callback for the HTTP request object
  */
-function cardOnloadHandler(){
+Card.prototype.cardOnloadHandler = function(){
   if(this.readyState === 4){
     if(this.status === 200){
       console.log("Finished grabbing " + this.id);
@@ -34,7 +42,7 @@ function cardOnloadHandler(){
 /*
  *  Error handling callback for the HTTP request object
  */
-function cardErrorHandler(){
+Card.prototype.cardErrorHandler = function(){
   // If the HTTP request fails, log the failure and try again in 15 minutes
   console.error("HTTP request failed.  " + this.statusText);
   updateWeatherDisplay();
@@ -45,7 +53,7 @@ function cardErrorHandler(){
 /*
  *  Timeout handling callback for the HTTP request object
  */
-function cardTimeoutHandler(){
+Card.prototype.cardTimeoutHandler = function(){
   // If the HTTP request times out, just try again in 15 minutes
   console.log("HTTP request timed out.  Trying again in 15 minutes.");
   updateWeatherDisplay();
