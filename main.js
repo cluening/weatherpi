@@ -13,7 +13,7 @@ function onLoad(){
   //weather['sunriseTime'] = 1437826098;
   //weather['sunsetTime'] = 1437877032;
 
-  downloadCardHTML("defaultscreen", "weather.html"); 
+  downloadCardHTML("weatherscreen", "weather.html"); 
   downloadCardHTML("alertdescriptionscreen", "alert.html"); 
   downloadCardHTML("settingsscreen", "settings.html"); 
   downloadCardHTML("weeklyscreen", "weeklyforecast.html"); 
@@ -26,7 +26,7 @@ function onLoad(){
 /*
  *  Handle clicks on the screen
  */
-function defaultscreenOnClick(){
+function weatherscreenOnClick(){
   console.log("Showing the weekly screen.");
   //window.location.reload(true);
   if(weather["alerttitles"].length > 0){
@@ -39,14 +39,14 @@ function defaultscreenOnClick(){
     document.getElementById("weeklyscreen").style.display = "inline";
     weeklyscreentimeout = setTimeout(weeklyscreenOnClick, 30*1000);
   }
-  document.getElementById("defaultscreen").style.WebkitFilter = "blur(10px)";
+  document.getElementById("weatherscreen").style.WebkitFilter = "blur(10px)";
 }
 
 function weeklyscreenOnClick(){
   console.log("Hiding weekly screen.");
   clearTimeout(weeklyscreentimeout); // in case somebody clicks to close this screen
   document.getElementById("weeklyscreen").style.display = "none";
-  document.getElementById("defaultscreen").style.WebkitFilter = "blur(0px)";
+  document.getElementById("weatherscreen").style.WebkitFilter = "blur(0px)";
 }
 
 function alertdescriptionscreenOnClick(){
@@ -89,7 +89,7 @@ function displaySettingsScreen(event){
 function closeSettingsScreen(event){
   event.stopPropagation();
   document.getElementById("settingsscreen").style.display = "none";
-  document.getElementById("defaultscreen").style.WebkitFilter = "blur(0px)";
+  document.getElementById("weatherscreen").style.WebkitFilter = "blur(0px)";
 }
 
 /*
@@ -163,7 +163,7 @@ function updateWeatherDisplay(){
   var tempdelta = document.getElementById("tempdelta");
   var hightemp = document.getElementById("hightemp");
   var lowtemp = document.getElementById("lowtemp");
-  var screen = document.getElementById("defaultscreen");
+  var screen = document.getElementById("weatherscreen");
   var hourlysummary = document.getElementById("hourlysummary");
   var curtime = Math.floor(Date.now()/1000); // Convert from milliseconds
   //console.log("Time: " + curtime);
@@ -246,7 +246,7 @@ function updateTimeDisplay(){
   //console.log("Time: " + timestamp);
   //console.log("Sunrisetime: " + weather['sunriseTime']);
   //console.log("Sunsettime: " + weather['sunsetTime']);
-  var screen = document.getElementById("defaultscreen");
+  var screen = document.getElementById("weatherscreen");
 
   if((timestamp > weather['sunriseTime'] - 3600 && timestamp < weather['sunsetTime']) && daynight != "day"){
     if(timestamp < weather['sunriseTime']){

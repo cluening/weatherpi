@@ -21,7 +21,6 @@ function cardOnloadHandler(){
   if(this.readyState === 4){
     if(this.status === 200){
       console.log("Finished grabbing " + this.id);
-			//contentDiv = document.getElementById("defaultscreen");
       contentDiv = document.getElementById(this.id);
       contentDiv.innerHTML = this.responseText;
     } else {
