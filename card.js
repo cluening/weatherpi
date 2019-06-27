@@ -4,6 +4,24 @@
 function Card(cardname, cardhtml){
   this.name = cardname;
   this.html = cardhtml;
+
+  this.addToDocument();
+  this.downloadCardHTML();
+
+  // Other variables and functions this object needs:
+  // function OnClick()
+  // var displaytimeout
+  // var divID (or should this just always be the card name?)
+  // function updateCallback()
+  // function show(), function hide()
+}
+
+
+Card.prototype.addToDocument = function(){
+  console.log("Creating the new div");
+  var div = document.createElement("div");
+  div.id = this.name;
+  document.body.appendChild(div);
 }
 
 /*

@@ -18,10 +18,10 @@ function onLoad(){
   settingscard = new Card("settingsscreen", "settings.html");
   weeklycard = new Card("weeklyscreen", "weeklyforecast.html");
 
-  weathercard.downloadCardHTML();
-  alertcard.downloadCardHTML();
-  settingscard.downloadCardHTML();
-  weeklycard.downloadCardHTML();
+//  weathercard.downloadCardHTML();
+//  alertcard.downloadCardHTML();
+//  settingscard.downloadCardHTML();
+//  weeklycard.downloadCardHTML();
 
   updateTimeDisplay();
   updateWeather();
