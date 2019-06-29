@@ -5,7 +5,10 @@ function Card(cardname, cardhtml){
   this.name = cardname;
   this.html = cardhtml;
 
-  this.addToDocument();
+  this.div = document.createElement("div");
+  this.div.id = this.name;
+  this.div.className = "screen";
+
   this.downloadCardHTML();
 
   // Other variables and functions this object needs:
@@ -17,11 +20,10 @@ function Card(cardname, cardhtml){
 }
 
 
+// FIXME: this should probably all just move to the constructor
 Card.prototype.addToDocument = function(){
-  console.log("Creating the new div");
-  var div = document.createElement("div");
-  div.id = this.name;
-  document.body.appendChild(div);
+  console.log("Adding div to the screen");
+  document.body.appendChild(this.div);
 }
 
 /*
@@ -33,6 +35,7 @@ Card.prototype.downloadCardHTML = function(){
   console.log("Grabbing a card object's data");
 
   Httpreq.id = this.name;
+  Httpreq.div = this.div;
   Httpreq.onload = this.cardOnloadHandler;
   Httpreq.onerror = this.cardErrorHandler;
   Httpreq.ontimeout = this.cardTimeoutHandler;
@@ -48,6 +51,7 @@ Card.prototype.cardOnloadHandler = function(){
     if(this.status === 200){
       console.log("Finished grabbing " + this.id);
       contentDiv = document.getElementById(this.id);
+      contentDiv = this.div;
       contentDiv.innerHTML = this.responseText;
     } else {
       console.error(this.statusText);

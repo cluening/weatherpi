@@ -13,10 +13,22 @@ function onLoad(){
   //weather['sunriseTime'] = 1437826098;
   //weather['sunsetTime'] = 1437877032;
 
-  weathercard = new Card("weatherscreen", "weather.html");
-  alertcard = new Card("alertdescriptionscreen", "alert.html");
-  settingscard = new Card("settingsscreen", "settings.html");
-  weeklycard = new Card("weeklyscreen", "weeklyforecast.html");
+  weathercard = weatherscreenCreate();
+  weathercard.addToDocument();
+
+  alertcard = alertscreenCreate();
+  alertcard.addToDocument();
+
+  settingscard = settingsscreenCreate();
+  settingscard.addToDocument();
+
+  weeklycard = weeklyscreenCreate();
+  weeklycard.addToDocument();
+
+//  weathercard = new Card("weatherscreen", "weather.html");
+//  alertcard = new Card("alertdescriptionscreen", "alert.html");
+//  settingscard = new Card("settingsscreen", "settings.html");
+//  weeklycard = new Card("weeklyscreen", "weeklyforecast.html");
 
 //  weathercard.downloadCardHTML();
 //  alertcard.downloadCardHTML();
@@ -31,21 +43,6 @@ function onLoad(){
 /*
  *  Handle clicks on the screen
  */
-function weatherscreenOnClick(){
-  console.log("Showing the weekly screen.");
-  //window.location.reload(true);
-  if(weather["alerttitles"].length > 0){
-    curalertdescription = 0;
-    document.getElementById("alertdescriptionbar").textContent = weather['alerttitles'][0];
-    document.getElementById("alertdescription").innerHTML = weather['alertdescriptions'][0];
-    document.getElementById("alertdescriptionscreen").style.display = "inline";
-    alertdescriptionscreentimeout = setTimeout(alertdescriptionscreenOnClick, 30*1000);
-  }else{
-    document.getElementById("weeklyscreen").style.display = "inline";
-    weeklyscreentimeout = setTimeout(weeklyscreenOnClick, 30*1000);
-  }
-  document.getElementById("weatherscreen").style.WebkitFilter = "blur(10px)";
-}
 
 function weeklyscreenOnClick(){
   console.log("Hiding weekly screen.");
@@ -185,6 +182,7 @@ function updateWeatherDisplay(){
   }
   if(weather['alerttitles'].length > 0){
     //console.log("Hey look, an alert!");
+    // FIXME: this is a mess of two different cards
     document.getElementById("alertbar").textContent = weather['alerttitles'][0];
     document.getElementById("alertdescriptionbar").textContent = weather['alerttitles'][0];
   } else {
