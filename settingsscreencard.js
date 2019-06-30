@@ -1,9 +1,8 @@
-function settingsscreenCreate(){
-  settingsscreen = new Card("settingsscreen", "settings.html");
-  
-  return settingsscreen;
+function SettingsCard(){
+  Card.call(this, "settingsscreen", "settings.html");
 }
 
+SettingsCard.prototype = Object.create(Card.prototype);
 
 /*
  *  Close settings screen when x button is clicked

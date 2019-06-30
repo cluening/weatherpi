@@ -1,9 +1,9 @@
-function alertscreenCreate(){
-  alertscreen = new Card("alertdescriptionscreen", "alert.html");
-  alertscreen.div.onclick = alertdescriptionscreenOnClick;
-  
-  return alertscreen;
+function AlertCard(){
+  Card.call(this, "alertdescriptionscreen", "alert.html");
+  this.div.onclick = alertdescriptionscreenOnClick;
 }
+
+AlertCard.prototype = Object.create(Card.prototype);
 
 
 function alertdescriptionscreenOnClick(){

@@ -1,9 +1,11 @@
-function weeklyscreenCreate(){
-  weeklyscreen = new Card("weeklyscreen", "weeklyforecast.html");
-  weeklyscreen.div.onclick = weeklyscreenOnClick;
-  
-  return weeklyscreen;
+function WeeklyCard(){
+  Card.call(this, "weeklyscreen", "weeklyforecast.html");
+
+  this.div.onclick = weeklyscreenOnClick;
 }
+
+
+WeeklyCard.prototype = Object.create(Card.prototype);
 
 
 function weeklyscreenOnClick(){

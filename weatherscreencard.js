@@ -1,11 +1,15 @@
-function weatherscreenCreate(){
-  weatherscreen = new Card("weatherscreen", "weather.html");
-  weatherscreen.div.onclick = weatherscreenOnClick;
+function WeatherCard(){
+  Card.call(this, "weatherscreen", "weather.html");
+  
+  this.div.onclick = weatherscreenOnClick;
 
   updateTimeDisplay();
 
-  return weatherscreen;
 }
+
+
+WeatherCard.prototype = Object.create(Card.prototype);
+
 
 function weatherscreenOnClick(){
   console.log("Handling a weather screen click");
