@@ -25,6 +25,8 @@ function onLoad(){
   weeklycard = weeklyscreenCreate();
   weeklycard.addToDocument();
 
+  weatherscreen.div.style.zIndex = "100";
+
 //  weathercard = new Card("weatherscreen", "weather.html");
 //  alertcard = new Card("alertdescriptionscreen", "alert.html");
 //  settingscard = new Card("settingsscreen", "settings.html");
@@ -35,72 +37,10 @@ function onLoad(){
 //  settingscard.downloadCardHTML();
 //  weeklycard.downloadCardHTML();
 
-  updateTimeDisplay();
+//  updateTimeDisplay();
   updateWeather();
 }
 
-
-/*
- *  Handle clicks on the screen
- */
-
-function weeklyscreenOnClick(){
-  console.log("Hiding weekly screen.");
-  clearTimeout(weeklyscreentimeout); // in case somebody clicks to close this screen
-  document.getElementById("weeklyscreen").style.display = "none";
-  document.getElementById("weatherscreen").style.WebkitFilter = "blur(0px)";
-}
-
-function alertdescriptionscreenOnClick(){
-  if(weather["alerttitles"].length > curalertdescription + 1){
-    curalertdescription += 1;
-    document.getElementById("alertdescriptionbar").textContent = weather['alerttitles'][curalertdescription];
-    document.getElementById("alertdescription").innerHTML = weather['alertdescriptions'][curalertdescription];
-    alertdescriptionscreentimeout = setTimeout(alertdescriptionscreenOnClick, 30*1000);
-  }else{
-    console.log("Hiding alert description screen.");
-    clearTimeout(alertdescriptionscreentimeout); // in case somebody clicks to close this screen
-    document.getElementById("alertdescriptionscreen").style.display = "none";
-    document.getElementById("weeklyscreen").style.display = "inline";
-    weeklyscreentimeout = setTimeout(weeklyscreenOnClick, 30*1000);
-  }
-}
-
-/*
- *  Reload the page when the reload button is pressed
- */
-function reloadPage(event){
-  console.log("Reloading the page");
-  window.location.reload(true);
-}
-
-/*
- *  Display the settings screen when the settings button is pressed
- */
-function displaySettingsScreen(event){
-  event.stopPropagation();
-  console.log("Displaying settings screen");
-  clearTimeout(weeklyscreentimeout);
-  document.getElementById("weeklyscreen").style.display = "none";
-  document.getElementById("settingsscreen").style.display = "inline";
-}
-
-/*
- *  Close settings screen when x button is clicked
- */
-function closeSettingsScreen(event){
-  event.stopPropagation();
-  document.getElementById("settingsscreen").style.display = "none";
-  document.getElementById("weatherscreen").style.WebkitFilter = "blur(0px)";
-}
-
-/*
- *  Close the weatherpi window
- */
-function closeWeatherPi(event){
-  console.log("Trying to close window");
-  this.window.close();
-}
 
 /*
  *  Wrapper function that kicks off the weather update process
@@ -222,67 +162,6 @@ function updateWeatherDisplay(){
   document.getElementById("alertdescription").innerHTML = weather['alertdescriptions'][0];
 }
 
-/*
- *  Update the time part of the display
- */
-function updateTimeDisplay(){
-  var now = new Date();
-  var timestamp = Date.parse(now)/1000;
-  var hours = now.getHours();
-  var minutes = now.getMinutes();
-  
-  if(minutes < 10){
-    minutes = "0" + minutes;
-  }
-  if(hours == 0){
-    hours = 12;
-  } else if(hours > 12){
-    hours = hours % 12;
-  }
-  
-  // FIXME: this check should be done before this function even gets called
-  if(cardsloaded == true){
-    timespan = document.getElementById("time");
-    timespan.innerHTML = hours + ":" + minutes;
-  }
-  
-  //console.log("Time: " + timestamp);
-  //console.log("Sunrisetime: " + weather['sunriseTime']);
-  //console.log("Sunsettime: " + weather['sunsetTime']);
-  var screen = document.getElementById("weatherscreen");
-
-  if((timestamp > weather['sunriseTime'] - 3600 && timestamp < weather['sunsetTime']) && daynight != "day"){
-    if(timestamp < weather['sunriseTime']){
-      //console.log("Doing day transition");
-      //screen.style.backgroundColor = backgroundColor("rgb(0, 14, 62)", "rgb(37, 103, 200)", weather['sunriseTime'] - timestamp, 3600);
-      screen.style.backgroundColor = backgroundColor("rgb(0, 14, 62)", "rgb(37, 103, 200)", timestamp - (weather['sunriseTime'] - 3600), 3600);
-    }
-    else if(timestamp > weather['sunriseTime']){
-      //console.log("Jumping straight ahead to day: " + timestamp);
-      screen.style.backgroundColor = "rgb(37, 103, 200)";
-      daynight = "day";
-    }
-  }
-  else if(timestamp > weather['sunsetTime'] && daynight != "night"){
-    //console.log(timestamp + " (sunriseTime: " + weather['sunriseTime'] + ", sunsetTime: " + weather['sunsetTime']);
-    if(timestamp < weather['sunsetTime'] + 3600){
-      //console.log("Doing night transition");
-      screen.style.backgroundColor = backgroundColor("rgb(37, 103, 200)", "rgb(0, 14, 62)", timestamp - weather['sunsetTime'], 3600);
-    }
-    else if(timestamp > weather['sunsetTime'] + 3600){
-      //console.log("Jumping straight ahead to night: " + timestamp);
-      screen.style.backgroundColor = "rgb(0, 14, 62)";
-      daynight = "night";
-    }
-  }
-  else if(timestamp < weather['sunriseTime'] - 3600 && daynight != "night"){
-    //console.log("Jumping straight ahead to before dawn: " + timestamp);
-    screen.style.backgroundColor = "rgb(0, 14, 62)";
-    daynight = "night";
-  }
-
-  setTimeout(function(){updateTimeDisplay()}, 500);
-}
 
 /*
  *  Calculate a background color based on start/end colors, number of time steps, and
