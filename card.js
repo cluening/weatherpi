@@ -10,11 +10,13 @@ function Card(cardname, cardhtml){
   this.div = document.createElement("div");
   this.div.id = this.name;
   this.div.className = "screen";
+  if(this.onClick != undefined) {
+    this.div.onclick = this.onClick;
+  }
 
   this.downloadCardHTML();
 
   // Other variables and functions this object needs:
-  // function OnClick()
   // var displaytimeout
   // var divID (or should this just always be the card name?)
   // function updateCallback()
@@ -25,8 +27,14 @@ function Card(cardname, cardhtml){
 /*
  * Override this function to have this card's display updated every
  * this.displayupdateinterval milliseconds
-*/
+ */
 Card.prototype.intervalUpdateDisplay = undefined;
+
+
+/*
+ * Override this function to handle card-wide click events
+ */
+Card.prototype.onClick = undefined;
 
 
 // FIXME: this should probably all just move to the constructor
