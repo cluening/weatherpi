@@ -1,8 +1,7 @@
 function WeatherCard(){
   Card.call(this, "weatherscreen", "weather.html");
 
-  this.displayupdateinterval = 500;  
-  //this.div.onclick = this.weatherscreenOnClick;
+  this.displayupdatems = 500;  
 }
 
 WeatherCard.prototype = Object.create(Card.prototype);

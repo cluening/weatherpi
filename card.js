@@ -5,7 +5,7 @@ function Card(cardname, cardhtml){
   this.name = cardname;
   this.html = cardhtml;
   this.isloaded = false;
-  this.displayupdateinterval = 15*60*1000;
+  this.displayupdatems = 15*60*1000;
 
   this.div = document.createElement("div");
   this.div.id = this.name;
@@ -26,7 +26,7 @@ function Card(cardname, cardhtml){
 
 /*
  * Override this function to have this card's display updated every
- * this.displayupdateinterval milliseconds
+ * this.displayupdatems milliseconds
  */
 Card.prototype.intervalUpdateDisplay = undefined;
 
@@ -73,7 +73,7 @@ Card.prototype.cardOnloadHandler = function(){
 
       this.card.isloaded = true;
       if(this.card.intervalUpdateDisplay != undefined){
-        setInterval(this.card.intervalUpdateDisplay, this.card.displayupdateinterval);
+        setInterval(this.card.intervalUpdateDisplay, this.card.displayupdatems);
       }
 
     } else {
