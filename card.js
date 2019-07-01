@@ -4,6 +4,8 @@
 function Card(cardname, cardhtml){
   this.name = cardname;
   this.html = cardhtml;
+  this.isloaded = false;
+  this.displayupdateinterval = 15*60*1000;
 
   this.div = document.createElement("div");
   this.div.id = this.name;
@@ -20,6 +22,13 @@ function Card(cardname, cardhtml){
 }
 
 
+/*
+ * Override this function to have this card's display updated every
+ * this.displayupdateinterval milliseconds
+*/
+Card.prototype.intervalUpdateDisplay = undefined;
+
+
 // FIXME: this should probably all just move to the constructor
 Card.prototype.addToDocument = function(){
   console.log("Adding div to the screen");
@@ -34,8 +43,7 @@ Card.prototype.downloadCardHTML = function(){
 
   console.log("Grabbing a card object's data");
 
-  Httpreq.id = this.name;
-  Httpreq.div = this.div;
+  Httpreq.card = this;
   Httpreq.onload = this.cardOnloadHandler;
   Httpreq.onerror = this.cardErrorHandler;
   Httpreq.ontimeout = this.cardTimeoutHandler;
@@ -49,16 +57,21 @@ Card.prototype.downloadCardHTML = function(){
 Card.prototype.cardOnloadHandler = function(){
   if(this.readyState === 4){
     if(this.status === 200){
-      console.log("Finished grabbing " + this.id);
-      contentDiv = document.getElementById(this.id);
-      contentDiv = this.div;
+      console.log("Finished grabbing " + this.card.div.id);
+      console.log(this.card);
+      contentDiv = document.getElementById(this.card.div.id);
+      contentDiv = this.card.div;
       contentDiv.innerHTML = this.responseText;
+
+      this.card.isloaded = true;
+      if(this.card.intervalUpdateDisplay != undefined){
+        setInterval(this.card.intervalUpdateDisplay, this.card.displayupdateinterval);
+      }
+
     } else {
       console.error(this.statusText);
     }
   }
-// FIXME: need a way to indicate that everything is loaded
-  cardsloaded = true;
 }
 
 /*

@@ -1,19 +1,18 @@
 function WeatherCard(){
   Card.call(this, "weatherscreen", "weather.html");
-  
-  this.div.onclick = weatherscreenOnClick;
 
-  updateTimeDisplay();
-
+  this.displayupdateinterval = 500;  
+  this.div.onclick = this.weatherscreenOnClick;
 }
-
 
 WeatherCard.prototype = Object.create(Card.prototype);
 
 
-function weatherscreenOnClick(){
+/*
+ * Handle clicks
+ */
+WeatherCard.prototype.weatherscreenOnClick = function(){
   console.log("Handling a weather screen click");
-  //window.location.reload(true);
   if(weather["alerttitles"].length > 0){
     curalertdescription = 0;
     // FIXME: this needs to just display the alert screen and let it take care of itself
@@ -32,7 +31,7 @@ function weatherscreenOnClick(){
 /*
  *  Update the time part of the display
  */
-function updateTimeDisplay(){
+WeatherCard.prototype.intervalUpdateDisplay = function(){
   var now = new Date();
   var timestamp = Date.parse(now)/1000;
   var hours = now.getHours();
@@ -47,17 +46,14 @@ function updateTimeDisplay(){
     hours = hours % 12;
   }
 
-  // FIXME: this check should be done before this function even gets called
-  if(cardsloaded == true){
-    timespan = document.getElementById("time");
-    timespan.innerHTML = hours + ":" + minutes;
-  }
+  timespan = document.getElementById("time");
+  timespan.innerHTML = hours + ":" + minutes;
 
   //console.log("Time: " + timestamp);
   //console.log("Sunrisetime: " + weather['sunriseTime']);
   //console.log("Sunsettime: " + weather['sunsetTime']);
   var screen = document.getElementById("weatherscreen");
-
+    
   if((timestamp > weather['sunriseTime'] - 3600 && timestamp < weather['sunsetTime']) && daynight != "day"){
     if(timestamp < weather['sunriseTime']){
       //console.log("Doing day transition");
@@ -88,6 +84,4 @@ function updateTimeDisplay(){
     daynight = "night";
   }
 
-  setTimeout(function(){updateTimeDisplay()}, 500);
 }
-
