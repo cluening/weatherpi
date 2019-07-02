@@ -26,6 +26,9 @@ function onLoad(){
   weeklycard = new WeeklyCard();
   weeklycard.addToDocument();
 
+  weathercard.show();
+  weeklycard.show();
+
 //  weathercard = new Card("weatherscreen", "weather.html");
 //  alertcard = new Card("alertdescriptionscreen", "alert.html");
 //  settingscard = new Card("settingsscreen", "settings.html");

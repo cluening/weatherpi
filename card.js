@@ -6,6 +6,7 @@ function Card(cardname, cardhtml){
   this.html = cardhtml;
   this.isloaded = false;
   this.displayupdatems = 15*60*1000;
+  this.autoclosems = -1;
 
   this.div = document.createElement("div");
   this.div.id = this.name;
@@ -17,7 +18,6 @@ function Card(cardname, cardhtml){
   this.downloadCardHTML();
 
   // Other variables and functions this object needs:
-  // var displaytimeout
   // var divID (or should this just always be the card name?)
   // function updateCallback()
   // function show(), function hide()
@@ -42,6 +42,31 @@ Card.prototype.addToDocument = function(){
   console.log("Adding div to the screen");
   document.body.appendChild(this.div);
 }
+
+
+/*
+ * Show a card
+ */
+Card.prototype.show = function(){
+  self = this;
+  this.div.style.display = "inline";
+  if(this.autoclosems >= 0){
+    console.log("Setting timeout");
+    setTimeout(function(){
+      self.hide();
+    }, this.autoclosems);
+  }
+}
+
+
+/*
+ * Hide a card
+ */
+Card.prototype.hide = function(){
+  console.log("Hiding");
+  this.div.style.display = "none";
+}
+
 
 /*
  *  Download a card's html

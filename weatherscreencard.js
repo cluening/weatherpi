@@ -12,6 +12,11 @@ WeatherCard.prototype = Object.create(Card.prototype);
  */
 WeatherCard.prototype.onClick = function(){
   console.log("Handling a weather screen click");
+  weeklycard.show();
+}
+
+WeatherCard.prototype.onClickOrig = function(){
+  console.log("Handling a weather screen click");
   if(weather["alerttitles"].length > 0){
     curalertdescription = 0;
     // FIXME: this needs to just display the alert screen and let it take care of itself

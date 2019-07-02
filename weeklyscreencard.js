@@ -1,6 +1,7 @@
 function WeeklyCard(){
   Card.call(this, "weeklyscreen", "weeklyforecast.html");
 
+  this.autoclosems = 30*1000;
   this.div.onclick = weeklyscreenOnClick;
 }
 
