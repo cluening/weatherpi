@@ -95,20 +95,10 @@ function weatherTimeoutHandler(){
  *  Update the weather part of the display
  */
 function updateWeatherDisplay(){
-  // Update the current conditions
+  /* bookkeeping */
   var staledataalert = "Last updated more than 2 hours ago";
   var staledatadescription = "<BR>Last weather update time:<BR>"; // Time and date get added later
-  var iconspan = document.getElementById("icon");
-  var temperaturespan = document.getElementById("temperature");
-  var tempdelta = document.getElementById("tempdelta");
-  var hightemp = document.getElementById("hightemp");
-  var lowtemp = document.getElementById("lowtemp");
-  var screen = document.getElementById("weatherscreen");
-  var hourlysummary = document.getElementById("hourlysummary");
   var curtime = Math.floor(Date.now()/1000); // Convert from milliseconds
-  //console.log("Time: " + curtime);
-  
-  //console.log("Difference: " + (curtime - weather['updatetime']));
   if(curtime - weather['updatetime'] > 60*60*2){
     //console.log("Adding update time message to alert stack");
     if(weather['alerttitles'].indexOf(staledataalert) < 0){
@@ -118,26 +108,48 @@ function updateWeatherDisplay(){
       weather['alertdescriptions'].unshift(staledatadescription);
     }
   }
+
+  /* end bookkeeping */
+
+
+  /* weather card */
+  var iconspan = document.getElementById("icon");
+  var temperaturespan = document.getElementById("temperature");
+  var tempdelta = document.getElementById("tempdelta");
+  var hightemp = document.getElementById("hightemp");
+  var lowtemp = document.getElementById("lowtemp");
+  var screen = document.getElementById("weatherscreen");
+  var hourlysummary = document.getElementById("hourlysummary");
+
   if(weather['alerttitles'].length > 0){
-    //console.log("Hey look, an alert!");
-    // FIXME: this is a mess of two different cards
     document.getElementById("alertbar").textContent = weather['alerttitles'][0];
-    document.getElementById("alertdescriptionbar").textContent = weather['alerttitles'][0];
   } else {
     document.getElementById("alertbar").textContent = "";
-    document.getElementById("alertdescriptionbar").textContent = "";
   }
-  
+
   iconspan.className = weather['icon'];
   temperaturespan.textContent = weather['temperature'];
   tempdelta.textContent = weather['tempdelta'];
   hightemp.textContent = weather['hightemp'];
   lowtemp.textContent = weather['lowtemp'];
   hourlysummary.textContent = weather['hourlysummary'];
-  //console.log("Sunrisetime: " + weather['sunriseTime']);
-  //console.log("Sunsettime: " + weather['sunsetTime']);
-  
-  // Update the weekly forecast
+
+  /* end weather card */
+
+
+  /* alert card */
+  if(weather['alerttitles'].length > 0){
+    document.getElementById("alertdescriptionbar").textContent = weather['alerttitles'][0];
+  } else {
+    document.getElementById("alertdescriptionbar").textContent = "";
+  }
+  // FIXME: this line is probably redundant after moving it to the alert screen click callback
+  document.getElementById("alertdescription").innerHTML = weather['alertdescriptions'][0];
+
+  /* end alert card */
+
+
+  /* weekly card */
   document.getElementById("day1name").textContent = weather['day1name'];
   document.getElementById("day2name").textContent = weather['day2name'];
   document.getElementById("day3name").textContent = weather['day3name'];
@@ -155,9 +167,15 @@ function updateWeatherDisplay(){
   
   document.getElementById("dailysummary").textContent = weather['dailysummary'];
   
+
+  /* end weekly card */
+
+
+  /* settings card */
   document.getElementById("lastupdatedate").textContent = Date(weather['updatetime']);
-  // FIXME: this line is probably redundant after moving it to the alert screen click callback
-  document.getElementById("alertdescription").innerHTML = weather['alertdescriptions'][0];
+
+  /* end settings card */
+
 }
 
 
