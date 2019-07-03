@@ -12,7 +12,10 @@ function Card(cardname, cardhtml){
   this.div.id = this.name;
   this.div.className = "screen";
   if(this.onClick != undefined) {
-    this.div.onclick = this.onClick;
+    self = this;
+    this.div.onclick = function(){
+      self.onClick();
+    }
   }
 
   this.downloadCardHTML();

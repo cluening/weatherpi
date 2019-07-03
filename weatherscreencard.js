@@ -1,7 +1,9 @@
-function WeatherCard(){
+function WeatherCard(detailcard, alertcard){
   Card.call(this, "weatherscreen", "weather.html");
 
-  this.displayupdatems = 500;  
+  this.displayupdatems = 500;
+  this.detailcard = detailcard;
+  this.alertcard = alertcard;
 }
 
 WeatherCard.prototype = Object.create(Card.prototype);
@@ -11,8 +13,13 @@ WeatherCard.prototype = Object.create(Card.prototype);
  * Handle clicks
  */
 WeatherCard.prototype.onClick = function(){
+  // FIXME: maybe "if this.alertcard.isactive ..."?
   console.log("Handling a weather screen click");
-  weeklycard.show();
+  if(this.alertcard.alerttitles.length > 0){
+    this.alertcard.show();
+  } else {
+    this.detailcard.show();
+  }
 }
 
 WeatherCard.prototype.onClickOrig = function(){

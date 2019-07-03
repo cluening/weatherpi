@@ -13,21 +13,17 @@ function onLoad(){
   //weather['sunriseTime'] = 1437826098;
   //weather['sunsetTime'] = 1437877032;
 
-  //weathercard = weatherscreenCreate();
-  weathercard = new WeatherCard();
-  weathercard.addToDocument();
-
   alertcard = new AlertCard();
-  alertcard.addToDocument();
-
   settingscard = new SettingsCard();
-  settingscard.addToDocument();
-
   weeklycard = new WeeklyCard();
+  weathercard = new WeatherCard(weeklycard, alertcard);
+
+  weathercard.addToDocument();
+  alertcard.addToDocument();
+  settingscard.addToDocument();
   weeklycard.addToDocument();
 
   weathercard.show();
-  weeklycard.show();
 
 //  weathercard = new Card("weatherscreen", "weather.html");
 //  alertcard = new Card("alertdescriptionscreen", "alert.html");

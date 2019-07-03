@@ -1,12 +1,14 @@
 function AlertCard(){
   Card.call(this, "alertdescriptionscreen", "alert.html");
-  this.div.onclick = alertdescriptionscreenOnClick;
+
+  this.alerttitles = [];
+  this.alertdescriptions = [];
 }
 
 AlertCard.prototype = Object.create(Card.prototype);
 
 
-function alertdescriptionscreenOnClick(){
+AlertCard.prototype.onClick = function(){
   console.log("Handling an alert screen click");
   if(weather["alerttitles"].length > curalertdescription + 1){
     curalertdescription += 1;
@@ -22,3 +24,11 @@ function alertdescriptionscreenOnClick(){
   }
 }
 
+
+AlertCard.prototype.updateCard = function(alerttitles, alertdescriptions){
+  console.log("Updating alert display");
+  
+  this.alerttitles = alerttitles;
+  this.alertdescriptions = alertdescrptions;
+
+}
