@@ -46,6 +46,7 @@ WeatherCard.prototype.onClickOrig = function(){
 /*
  *  Update the time part of the display
  */
+// FIXME: this function should probably just be private to this card, since nothing else needs something like it
 WeatherCard.prototype.intervalUpdateDisplay = function(){
   var now = new Date();
   var timestamp = Date.parse(now)/1000;
@@ -105,8 +106,9 @@ WeatherCard.prototype.intervalUpdateDisplay = function(){
 /*
  *  Update the card's info
  */
-// FIXME: needs to be aded to card's API
-WeatherCard.prototype.updateDisplay = function(){
+// Needs:
+//   weather object
+WeatherCard.prototype.updateCard = function(data){
   var iconspan = document.getElementById("icon");
   var temperaturespan = document.getElementById("temperature");
   var tempdelta = document.getElementById("tempdelta");
@@ -115,16 +117,16 @@ WeatherCard.prototype.updateDisplay = function(){
   var screen = document.getElementById("weatherscreen");
   var hourlysummary = document.getElementById("hourlysummary");
 
-  if(weather['alerttitles'].length > 0){
-    document.getElementById("alertbar").textContent = weather['alerttitles'][0];
+  if(data['weather']['alerttitles'].length > 0){
+    document.getElementById("alertbar").textContent = data['weather']['alerttitles'][0];
   } else {
     document.getElementById("alertbar").textContent = "";
   }
 
-  iconspan.className = weather['icon'];
-  temperaturespan.textContent = weather['temperature'];
-  tempdelta.textContent = weather['tempdelta'];
-  hightemp.textContent = weather['hightemp'];
-  lowtemp.textContent = weather['lowtemp'];
-  hourlysummary.textContent = weather['hourlysummary'];
+  iconspan.className = data['weather']['icon'];
+  temperaturespan.textContent = data['weather']['temperature'];
+  tempdelta.textContent = data['weather']['tempdelta'];
+  hightemp.textContent = data['weather']['hightemp'];
+  lowtemp.textContent = data['weather']['lowtemp'];
+  hourlysummary.textContent = data['weather']['hourlysummary'];
 }

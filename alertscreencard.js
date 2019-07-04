@@ -25,16 +25,16 @@ AlertCard.prototype.onClick = function(){
 }
 
 
-AlertCard.prototype.updateCard = function(alerttitles, alertdescriptions){
+// Requires:
+//   alertitles[]
+//   alertdescriptions[]
+// FIXME: should this just take the weather object like the other three ended up doing?
+AlertCard.prototype.updateCard = function(data){
   console.log("Updating alert display");
-  
-  this.alerttitles = alerttitles;
-  this.alertdescriptions = alertdescrptions;
 
-}
+  this.alerttitles = data["alerttitles"];
+  this.alertdescriptions = data["alertdescriptions"];
 
-
-AlertCard.prototype.updateDisplay = function(){
   if(weather['alerttitles'].length > 0){
     document.getElementById("alertdescriptionbar").textContent = weather['alerttitles'][0];
   } else {

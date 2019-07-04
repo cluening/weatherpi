@@ -97,10 +97,19 @@ function updateWeatherDisplay(){
     }
   }
 
-  weathercard.updateDisplay();
-  alertcard.updateDisplay();
-  weeklycard.updateDisplay();
-  settingscard.updateDisplay();
+  weathercard.updateCard(
+    {"weather": weather}
+  );
+  alertcard.updateCard(
+    {"alerttitles": weather["alerttitles"], 
+     "alertdescriptions": weather["alertdescriptions"]}
+  );
+  weeklycard.updateCard(
+    {"weather": weather}
+  );
+  settingscard.updateCard(
+    {"weather": weather}
+  );
 }
 
 

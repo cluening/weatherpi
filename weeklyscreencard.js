@@ -37,21 +37,26 @@ function displaySettingsScreen(event){
 }
 
 
-WeeklyCard.prototype.updateDisplay = function(){
-  document.getElementById("day1name").textContent = weather['day1name'];
-  document.getElementById("day2name").textContent = weather['day2name'];
-  document.getElementById("day3name").textContent = weather['day3name'];
+/*
+ *  Update the card's info
+ */
+// Needs:
+//   weather object
+WeeklyCard.prototype.updateCard = function(data){
+  document.getElementById("day1name").textContent = data['weather']['day1name'];
+  document.getElementById("day2name").textContent = data['weather']['day2name'];
+  document.getElementById("day3name").textContent = data['weather']['day3name'];
 
-  document.getElementById("day1icon").className = weather['day1icon'];
-  document.getElementById("day2icon").className = weather['day2icon'];
-  document.getElementById("day3icon").className = weather['day3icon'];
+  document.getElementById("day1icon").className = data['weather']['day1icon'];
+  document.getElementById("day2icon").className = data['weather']['day2icon'];
+  document.getElementById("day3icon").className = data['weather']['day3icon'];
 
-  document.getElementById("day1lowtemp").textContent = weather['day1lowtemp'];
-  document.getElementById("day1hightemp").textContent = weather['day1hightemp'];
-  document.getElementById("day2lowtemp").textContent = weather['day2lowtemp'];
-  document.getElementById("day2hightemp").textContent = weather['day2hightemp'];
-  document.getElementById("day3lowtemp").textContent = weather['day3lowtemp'];
-  document.getElementById("day3hightemp").textContent = weather['day3hightemp'];
+  document.getElementById("day1lowtemp").textContent = data['weather']['day1lowtemp'];
+  document.getElementById("day1hightemp").textContent = data['weather']['day1hightemp'];
+  document.getElementById("day2lowtemp").textContent = data['weather']['day2lowtemp'];
+  document.getElementById("day2hightemp").textContent = data['weather']['day2hightemp'];
+  document.getElementById("day3lowtemp").textContent = data['weather']['day3lowtemp'];
+  document.getElementById("day3hightemp").textContent = data['weather']['day3hightemp'];
 
-  document.getElementById("dailysummary").textContent = weather['dailysummary'];
+  document.getElementById("dailysummary").textContent = data['weather']['dailysummary'];
 }

@@ -12,6 +12,7 @@ function Card(cardname, cardhtml){
   this.div = document.createElement("div");
   this.div.id = this.name;
   this.div.className = "screen";
+  // FIXME: this is now defined all the time
   if(this.onClick != undefined) {
     var self = this;
     this.div.onclick = function(){
@@ -39,10 +40,22 @@ Card.prototype.intervalUpdateDisplay = undefined;
 /*
  * Override this function to handle card-wide click events
  */
-Card.prototype.onClick = undefined;
+Card.prototype.onClick = function(){
+  console.log("No onClick() defined");
+}
 
 
-// FIXME: this should probably all just move to the constructor
+/*
+ * Override this function to update a card's data
+ */
+Card.prototype.updateCard = function(data){
+  console.log("No updateDisplay() defined");
+}
+
+
+/*
+ * Add a card to the document
+*/
 Card.prototype.addToDocument = function(){
   console.log("Adding div to the screen");
   document.body.appendChild(this.div);
