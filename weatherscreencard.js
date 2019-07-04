@@ -15,11 +15,15 @@ WeatherCard.prototype = Object.create(Card.prototype);
 WeatherCard.prototype.onClick = function(){
   // FIXME: maybe "if this.alertcard.isactive ..."?
   console.log("Handling a weather screen click");
+  this.detailcard.show();
+
+/*
   if(this.alertcard.alerttitles.length > 0){
     this.alertcard.show();
   } else {
     this.detailcard.show();
   }
+*/
 }
 
 WeatherCard.prototype.onClickOrig = function(){
@@ -95,4 +99,32 @@ WeatherCard.prototype.intervalUpdateDisplay = function(){
     daynight = "night";
   }
 
+}
+
+
+/*
+ *  Update the card's info
+ */
+// FIXME: needs to be aded to card's API
+WeatherCard.prototype.updateDisplay = function(){
+  var iconspan = document.getElementById("icon");
+  var temperaturespan = document.getElementById("temperature");
+  var tempdelta = document.getElementById("tempdelta");
+  var hightemp = document.getElementById("hightemp");
+  var lowtemp = document.getElementById("lowtemp");
+  var screen = document.getElementById("weatherscreen");
+  var hourlysummary = document.getElementById("hourlysummary");
+
+  if(weather['alerttitles'].length > 0){
+    document.getElementById("alertbar").textContent = weather['alerttitles'][0];
+  } else {
+    document.getElementById("alertbar").textContent = "";
+  }
+
+  iconspan.className = weather['icon'];
+  temperaturespan.textContent = weather['temperature'];
+  tempdelta.textContent = weather['tempdelta'];
+  hightemp.textContent = weather['hightemp'];
+  lowtemp.textContent = weather['lowtemp'];
+  hourlysummary.textContent = weather['hourlysummary'];
 }

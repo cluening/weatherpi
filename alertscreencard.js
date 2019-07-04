@@ -32,3 +32,14 @@ AlertCard.prototype.updateCard = function(alerttitles, alertdescriptions){
   this.alertdescriptions = alertdescrptions;
 
 }
+
+
+AlertCard.prototype.updateDisplay = function(){
+  if(weather['alerttitles'].length > 0){
+    document.getElementById("alertdescriptionbar").textContent = weather['alerttitles'][0];
+  } else {
+    document.getElementById("alertdescriptionbar").textContent = "";
+  }
+  // FIXME: this line is probably redundant after moving it to the alert screen click callback
+  document.getElementById("alertdescription").innerHTML = weather['alertdescriptions'][0];
+}

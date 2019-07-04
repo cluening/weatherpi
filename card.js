@@ -2,6 +2,7 @@
  *  The card object
  */
 function Card(cardname, cardhtml){
+  console.log("Creating new card");
   this.name = cardname;
   this.html = cardhtml;
   this.isloaded = false;
@@ -12,8 +13,9 @@ function Card(cardname, cardhtml){
   this.div.id = this.name;
   this.div.className = "screen";
   if(this.onClick != undefined) {
-    self = this;
+    var self = this;
     this.div.onclick = function(){
+      console.log(self.onClick);
       self.onClick();
     }
   }
@@ -51,7 +53,7 @@ Card.prototype.addToDocument = function(){
  * Show a card
  */
 Card.prototype.show = function(){
-  self = this;
+  var self = this;
   this.div.style.display = "inline";
   if(this.autoclosems >= 0){
     console.log("Setting timeout");

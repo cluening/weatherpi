@@ -22,3 +22,7 @@ function closeWeatherPi(event){
   this.window.close();
 }
 
+
+SettingsCard.prototype.updateDisplay = function(){
+  document.getElementById("lastupdatedate").textContent = Date(weather['updatetime']);
+}
