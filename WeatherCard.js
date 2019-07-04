@@ -1,5 +1,5 @@
 function WeatherCard(detailcard, alertcard){
-  Card.call(this, "weatherscreen", "weather.html");
+  Card.call(this, "weatherscreen", "WeatherCard.html");
 
   this.displayupdatems = 500;
   this.detailcard = detailcard;

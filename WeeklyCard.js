@@ -1,5 +1,5 @@
 function WeeklyCard(){
-  Card.call(this, "weeklyscreen", "weeklyforecast.html");
+  Card.call(this, "weeklyscreen", "WeeklyCard.html");
 
   this.autoclosems = 30*1000;
 }

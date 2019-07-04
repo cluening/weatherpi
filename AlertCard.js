@@ -1,5 +1,5 @@
 function AlertCard(){
-  Card.call(this, "alertdescriptionscreen", "alert.html");
+  Card.call(this, "alertdescriptionscreen", "AlertCard.html");
 
   this.alerttitles = [];
   this.alertdescriptions = [];
