@@ -13,17 +13,13 @@ WeatherCard.prototype = Object.create(Card.prototype);
  * Handle clicks
  */
 WeatherCard.prototype.onClick = function(){
-  // FIXME: maybe "if this.alertcard.isactive ..."?
   console.log("Handling a weather screen click");
-  this.detailcard.show();
 
-/*
   if(this.alertcard.alerttitles.length > 0){
     this.alertcard.show();
   } else {
     this.detailcard.show();
   }
-*/
 }
 
 WeatherCard.prototype.onClickOrig = function(){
