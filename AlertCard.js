@@ -48,7 +48,7 @@ AlertCard.prototype.onCardShow = function(){
 //   alertdescriptions[]
 // FIXME: should this just take the weather object like the other three ended up doing?
 // FIXME: the html element IDs should somehow be namespaced by the class they belong to
-AlertCard.prototype.updateCard = function(data){
+AlertCard.prototype.updateCardData = function(data){
   console.log("Updating alert display");
 
   this.alerttitles = data["alerttitles"];

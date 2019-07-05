@@ -28,6 +28,6 @@ function closeWeatherPi(event){
  */
 // Needs:
 //   weather object
-SettingsCard.prototype.updateCard = function(data){
+SettingsCard.prototype.updateCardData = function(data){
   document.getElementById("lastupdatedate").textContent = Date(data['weather']['updatetime']);
 }

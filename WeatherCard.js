@@ -88,7 +88,7 @@ WeatherCard.prototype.intervalUpdateDisplay = function(){
  */
 // Needs:
 //   weather object
-WeatherCard.prototype.updateCard = function(data){
+WeatherCard.prototype.updateCardData = function(data){
   var iconspan = document.getElementById("icon");
   var temperaturespan = document.getElementById("temperature");
   var tempdelta = document.getElementById("tempdelta");

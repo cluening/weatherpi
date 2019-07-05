@@ -47,8 +47,7 @@ Card.prototype.onClick = function(){
 /*
  * Override this function to update a card's data
  */
-// FIXME: this should probably be named "updateCardData"
-Card.prototype.updateCard = function(data){
+Card.prototype.updateCardData = function(data){
   console.log("No updateDisplay() defined");
 }
 

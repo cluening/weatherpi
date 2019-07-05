@@ -96,17 +96,17 @@ function updateWeatherDisplay(){
     }
   }
 
-  weathercard.updateCard(
+  weathercard.updateCardData(
     {"weather": weather}
   );
-  alertcard.updateCard(
+  alertcard.updateCardData(
     {"alerttitles": weather["alerttitles"], 
      "alertdescriptions": weather["alertdescriptions"]}
   );
-  weeklycard.updateCard(
+  weeklycard.updateCardData(
     {"weather": weather}
   );
-  settingscard.updateCard(
+  settingscard.updateCardData(
     {"weather": weather}
   );
 }

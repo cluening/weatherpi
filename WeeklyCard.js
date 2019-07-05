@@ -43,7 +43,7 @@ function displaySettingsScreen(event){
  */
 // Needs:
 //   weather object
-WeeklyCard.prototype.updateCard = function(data){
+WeeklyCard.prototype.updateCardData = function(data){
   document.getElementById("day1name").textContent = data['weather']['day1name'];
   document.getElementById("day2name").textContent = data['weather']['day2name'];
   document.getElementById("day3name").textContent = data['weather']['day3name'];
