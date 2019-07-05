@@ -8,9 +8,10 @@ function WeeklyCard(){
 WeeklyCard.prototype = Object.create(Card.prototype);
 
 
+// FIXME: get rid of weeklyscreentimeout variable
 WeeklyCard.prototype.onClick = function(){
   console.log("Handling a weekly screen click");
-  clearTimeout(weeklyscreentimeout); // in case somebody clicks to close this screen
+  clearTimeout(this.closetimeout); // in case somebody clicks to close this screen
   document.getElementById("weeklyscreen").style.display = "none";
   document.getElementById("weatherscreen").style.WebkitFilter = "blur(0px)";
 }

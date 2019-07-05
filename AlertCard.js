@@ -1,26 +1,36 @@
-function AlertCard(){
+function AlertCard(weeklycard){
   Card.call(this, "alertdescriptionscreen", "AlertCard.html");
+
+  this.weeklycard = weeklycard;
 
   this.alerttitles = [];
   this.alertdescriptions = [];
+
+  this.autoclosems = 30*1000;
+  this.curalertdescription = 0;
 }
 
 AlertCard.prototype = Object.create(Card.prototype);
 
 
 AlertCard.prototype.onClick = function(){
+  // FIXME: need to stop using the global weather object
+  // FIXME: get rid of alertdescriptionscreentimeout variable
   console.log("Handling an alert screen click");
-  if(weather["alerttitles"].length > curalertdescription + 1){
-    curalertdescription += 1;
-    document.getElementById("alertdescriptionbar").textContent = weather['alerttitles'][curalertdescription];
-    document.getElementById("alertdescription").innerHTML = weather['alertdescriptions'][curalertdescription];
-    alertdescriptionscreentimeout = setTimeout(alertdescriptionscreenOnClick, 30*1000);
+  clearTimeout(this.closetimeout);
+  this.show();
+  console.log(this.onClick);
+  if(weather["alerttitles"].length > this.curalertdescription + 1){
+    console.log("Showing another alert");
+    this.curalertdescription += 1;
+    document.getElementById("alertdescriptionbar").textContent = weather['alerttitles'][this.curalertdescription];
+    document.getElementById("alertdescription").innerHTML = weather['alertdescriptions'][this.curalertdescription];
+    //alertdescriptionscreentimeout = setTimeout(alertdescriptionscreenOnClick, 30*1000);
   }else{
+    this.curalertdescription = 0;
     console.log("Hiding alert description screen.");
-    clearTimeout(alertdescriptionscreentimeout); // in case somebody clicks to close this screen
-    document.getElementById("alertdescriptionscreen").style.display = "none";
-    document.getElementById("weeklyscreen").style.display = "inline";
-    weeklyscreentimeout = setTimeout(weeklyscreenOnClick, 30*1000);
+    this.weeklycard.show();
+    this.hide();
   }
 }
 
@@ -29,6 +39,7 @@ AlertCard.prototype.onClick = function(){
 //   alertitles[]
 //   alertdescriptions[]
 // FIXME: should this just take the weather object like the other three ended up doing?
+// FIXME: the element IDs should somehow be namespaced by the class they belong to
 AlertCard.prototype.updateCard = function(data){
   console.log("Updating alert display");
 

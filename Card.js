@@ -8,15 +8,16 @@ function Card(cardname, cardhtml){
   this.isloaded = false;
   this.displayupdatems = 15*60*1000;
   this.autoclosems = -1;
+  this.closetimeout = undefined;
 
   this.div = document.createElement("div");
   this.div.id = this.name;
   this.div.className = "screen";
+
   // FIXME: this is now defined all the time
   if(this.onClick != undefined) {
     var self = this;
     this.div.onclick = function(){
-      console.log(self.onClick);
       self.onClick();
     }
   }
@@ -25,8 +26,6 @@ function Card(cardname, cardhtml){
 
   // Other variables and functions this object needs:
   // var divID (or should this just always be the card name?)
-  // function updateCallback()
-  // function show(), function hide()
 }
 
 
@@ -70,7 +69,7 @@ Card.prototype.show = function(){
   this.div.style.display = "inline";
   if(this.autoclosems >= 0){
     console.log("Setting timeout");
-    setTimeout(function(){
+    this.closetimeout = setTimeout(function(){
       self.hide();
     }, this.autoclosems);
   }
@@ -82,6 +81,8 @@ Card.prototype.show = function(){
  */
 Card.prototype.hide = function(){
   console.log("Hiding");
+  console.log(this);
+  clearTimeout(this.closetimeout);
   this.div.style.display = "none";
 }
 

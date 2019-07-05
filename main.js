@@ -1,7 +1,6 @@
 var weather = {};
 var daynight = "day";
 var weeklyscreentimeout;
-var curalertdescription = 0;
 var cardsloaded = false;
 
 /*
@@ -13,9 +12,9 @@ function onLoad(){
   //weather['sunriseTime'] = 1437826098;
   //weather['sunsetTime'] = 1437877032;
 
-  alertcard = new AlertCard();
-  settingscard = new SettingsCard();
   weeklycard = new WeeklyCard();
+  alertcard = new AlertCard(weeklycard);
+  settingscard = new SettingsCard();
   weathercard = new WeatherCard(weeklycard, alertcard);
 
   weathercard.addToDocument();
