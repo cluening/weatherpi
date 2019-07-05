@@ -47,8 +47,18 @@ Card.prototype.onClick = function(){
 /*
  * Override this function to update a card's data
  */
+// FIXME: this should probably be named "updateCardData"
 Card.prototype.updateCard = function(data){
   console.log("No updateDisplay() defined");
+}
+
+
+/*
+ *  Called when showing a card
+ *  Override to perform more actions as needed.
+ */
+Card.prototype.onCardShow = function(){
+  return;
 }
 
 
@@ -66,6 +76,8 @@ Card.prototype.addToDocument = function(){
  */
 Card.prototype.show = function(){
   var self = this;
+
+  this.onCardShow();
   this.div.style.display = "inline";
   if(this.autoclosems >= 0){
     console.log("Setting timeout");
