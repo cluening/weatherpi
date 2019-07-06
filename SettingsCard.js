@@ -10,7 +10,6 @@ SettingsCard.prototype = Object.create(Card.prototype);
 function closeSettingsScreen(event){
   event.stopPropagation();
   document.getElementById("settingsscreen").style.display = "none";
-  document.getElementById("weatherscreen").style.WebkitFilter = "blur(0px)";
 }
 
 

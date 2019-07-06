@@ -13,7 +13,6 @@ WeeklyCard.prototype.onClick = function(){
   console.log("Handling a weekly screen click");
   clearTimeout(this.closetimeout); // in case somebody clicks to close this screen
   document.getElementById("weeklyscreen").style.display = "none";
-  document.getElementById("weatherscreen").style.WebkitFilter = "blur(0px)";
 }
 
 
@@ -29,6 +28,8 @@ function reloadPage(event){
 /*
  *  Display the settings screen when the settings button is pressed
  */
+// FIXME: use the close() and show() functions
+// FIXME: clear the correct timeout
 function displaySettingsScreen(event){
   event.stopPropagation();
   console.log("Displaying settings screen");
