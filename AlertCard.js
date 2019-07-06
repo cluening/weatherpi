@@ -16,7 +16,6 @@ AlertCard.prototype = Object.create(Card.prototype);
 
 AlertCard.prototype.onClick = function(){
   // FIXME: need to stop using the global weather object
-  // FIXME: get rid of alertdescriptionscreentimeout variable
   console.log("Handling an alert screen click");
   clearTimeout(this.closetimeout);
   console.log(this.onClick);
