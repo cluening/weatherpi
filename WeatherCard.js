@@ -43,7 +43,14 @@ WeatherCard.prototype.intervalUpdateDisplay = function(){
   }
 
   timespan = document.getElementById("time");
-  timespan.innerHTML = hours + ":" + minutes;
+  try {
+    timespan.innerHTML = hours + ":" + minutes;
+  }
+  catch(err){
+    // Must not be loaded yet.  Let's try again on the next iteration
+    // Slightly hacky.
+    return;
+  }
 
   //console.log("Time: " + timestamp);
   //console.log("Sunrisetime: " + weather['sunriseTime']);

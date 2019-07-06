@@ -1,10 +1,9 @@
+var cardlist = [];
 var weather = {};
 var daynight = "day";
-var weeklyscreentimeout;
-var cardsloaded = false;
 
 /*
- *  Kick off the initial time and weather updates.
+ *  Create the cards and wait for them to finish loading
  */
 function onLoad(){
   weather['sunriseTime'] = 0;
@@ -12,11 +11,33 @@ function onLoad(){
   //weather['sunriseTime'] = 1437826098;
   //weather['sunsetTime'] = 1437877032;
 
+  // These should all probably live in the list (or a dict) eventually
   weeklycard = new WeeklyCard();
   alertcard = new AlertCard(weeklycard);
   settingscard = new SettingsCard();
   weathercard = new WeatherCard(weeklycard, alertcard);
 
+  cardlist.push(weeklycard);
+  cardlist.push(alertcard);
+  cardlist.push(settingscard);
+  cardlist.push(weathercard);
+
+  waitForLoaded();
+}
+
+
+/*
+ * Wait for the cards to finish loading, then start the update loop
+ */
+function waitForLoaded(){
+  for(i=0; i<cardlist.length; i++){
+    if(cardlist[i].isloaded == false){
+      console.log("Not loaded yet");
+      setTimeout(waitForLoaded, 1000);
+      return;
+    }
+  }
+  console.log("All cards loaded");
   weathercard.addToDocument();
   alertcard.addToDocument();
   settingscard.addToDocument();
@@ -82,6 +103,7 @@ function weatherTimeoutHandler(){
 /*
  *  Update the weather part of the display
  */
+// FIXME: It looks like this can get called before the cards are all initialized
 function updateWeatherDisplay(){
   var staledataalert = "Last updated more than 2 hours ago";
   var staledatadescription = "<BR>Last weather update time:<BR>"; // Time and date get added later
