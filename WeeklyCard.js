@@ -8,7 +8,7 @@ function WeeklyCard(){
 WeeklyCard.prototype = Object.create(Card.prototype);
 
 
-// FIXME: get rid of weeklyscreentimeout variable
+// FIXME: this needs to use the close() function
 WeeklyCard.prototype.onClick = function(){
   console.log("Handling a weekly screen click");
   clearTimeout(this.closetimeout); // in case somebody clicks to close this screen
