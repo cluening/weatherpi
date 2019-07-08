@@ -4,21 +4,36 @@ function SettingsCard(){
 
 SettingsCard.prototype = Object.create(Card.prototype);
 
+
+/*
+ * 
+ */
+SettingsCard.prototype.onCardAdded = function(){
+  var self = this;
+  document.getElementById("closeweatherpi").onclick = function(event){
+    self.closeWeatherPi(event);
+  }
+  document.getElementById("settingsclose").onclick = function(event){
+    self.closeSettingsScreen(event);
+  }
+}
+
+
 /*
  *  Close settings screen when x button is clicked
  */
-function closeSettingsScreen(event){
+SettingsCard.prototype.closeSettingsScreen = function(event){
   event.stopPropagation();
-  document.getElementById("settingsscreen").style.display = "none";
+  this.hide();
 }
 
 
 /*
  *  Close the weatherpi window
  */
-function closeWeatherPi(event){
+SettingsCard.prototype.closeWeatherPi = function(event){
   console.log("Trying to close window");
-  this.window.close();
+  window.close();
 }
 
 
