@@ -17,7 +17,7 @@ WeeklyCard.prototype.onClick = function(){
 
 
 WeeklyCard.prototype.onCardAdded = function(){
-  self = this;
+  var self = this;
   document.getElementById("settingsbutton").onclick = function(event){
     self.displaySettingsScreen(event);
   }
