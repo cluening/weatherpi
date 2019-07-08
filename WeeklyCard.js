@@ -48,7 +48,6 @@ WeeklyCard.prototype.displaySettingsScreen = function(event){
   this.settingscard.show();
 }
 
-// FIXME: get rid of stuff with 'Orig' in its name
 
 /*
  *  Update the card's info
