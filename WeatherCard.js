@@ -1,4 +1,6 @@
 function WeatherCard(detailcard, alertcard){
+  // FIXME: the 'weatherscreen' name needs to be namespaced too
+  // FIXME: the 'weatherscreen' name needs to change to something like 'WeatherCard.card'
   Card.call(this, "weatherscreen", "WeatherCard.html");
 
   this.displayupdatems = 500;
@@ -42,7 +44,7 @@ WeatherCard.prototype.intervalUpdateDisplay = function(){
     hours = hours % 12;
   }
 
-  timespan = document.getElementById("time");
+  timespan = document.getElementById("WeatherCard.time");
   try {
     timespan.innerHTML = hours + ":" + minutes;
   }
@@ -55,6 +57,7 @@ WeatherCard.prototype.intervalUpdateDisplay = function(){
   //console.log("Time: " + timestamp);
   //console.log("Sunrisetime: " + weather['sunriseTime']);
   //console.log("Sunsettime: " + weather['sunsetTime']);
+  // FIXME: 'weatherscreen' needs a namespace
   var screen = document.getElementById("weatherscreen");
     
   if((timestamp > weather['sunriseTime'] - 3600 && timestamp < weather['sunsetTime']) && daynight != "day"){
@@ -96,18 +99,18 @@ WeatherCard.prototype.intervalUpdateDisplay = function(){
 // Needs:
 //   weather object
 WeatherCard.prototype.updateCardData = function(data){
-  var iconspan = document.getElementById("icon");
-  var temperaturespan = document.getElementById("temperature");
-  var tempdelta = document.getElementById("tempdelta");
-  var hightemp = document.getElementById("hightemp");
-  var lowtemp = document.getElementById("lowtemp");
-  var screen = document.getElementById("weatherscreen");
-  var hourlysummary = document.getElementById("hourlysummary");
+  var iconspan = document.getElementById("WeatherCard.icon");
+  var temperaturespan = document.getElementById("WeatherCard.temperature");
+  var tempdelta = document.getElementById("WeatherCard.tempdelta");
+  var hightemp = document.getElementById("WeatherCard.hightemp");
+  var lowtemp = document.getElementById("WeatherCard.lowtemp");
+  var screen = document.getElementById("WeatherCard.weatherscreen");
+  var hourlysummary = document.getElementById("WeatherCard.hourlysummary");
 
   if(data['weather']['alerttitles'].length > 0){
-    document.getElementById("alertbar").textContent = data['weather']['alerttitles'][0];
+    document.getElementById("WeatherCard.alertbar").textContent = data['weather']['alerttitles'][0];
   } else {
-    document.getElementById("alertbar").textContent = "";
+    document.getElementById("WeatherCard.alertbar").textContent = "";
   }
 
   iconspan.className = data['weather']['icon'];
