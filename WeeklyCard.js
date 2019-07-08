@@ -49,7 +49,6 @@ WeeklyCard.prototype.displaySettingsScreen = function(event){
 }
 
 // FIXME: get rid of stuff with 'Orig' in its name
-// FIXME: should main.css be split up between the cards too?  Probably.
 
 /*
  *  Update the card's info

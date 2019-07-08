@@ -11,6 +11,7 @@ body {
   user-select: none;          /* Likely future */
 }
 
+/* FIXME: this file should be broken up amongst the cards */
 /* FIXME: this should become "card" instead of "screen" */
 div.screen {
   display: none;
@@ -26,6 +27,7 @@ div.screen {
   /*background: radial-gradient(at top, #91D4F1, #2567C8);*/
   /*background: radial-gradient(at top, #012F68, #000E3E);*/
 }
+
 
 #weeklyscreen {
   display: none;

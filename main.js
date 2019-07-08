@@ -103,7 +103,6 @@ function weatherTimeoutHandler(){
 /*
  *  Update the weather part of the display
  */
-// FIXME: It looks like this can get called before the cards are all initialized
 function updateWeatherDisplay(){
   var staledataalert = "Last updated more than 2 hours ago";
   var staledatadescription = "<BR>Last weather update time:<BR>"; // Time and date get added later
