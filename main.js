@@ -12,9 +12,9 @@ function onLoad(){
   //weather['sunsetTime'] = 1437877032;
 
   // These should all probably live in the list (or a dict) eventually
-  weeklycard = new WeeklyCard();
-  alertcard = new AlertCard(weeklycard);
   settingscard = new SettingsCard();
+  weeklycard = new WeeklyCard(settingscard);
+  alertcard = new AlertCard(weeklycard);
   weathercard = new WeatherCard(weeklycard, alertcard);
 
   cardlist.push(weeklycard);

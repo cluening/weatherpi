@@ -1,6 +1,7 @@
-function WeeklyCard(){
+function WeeklyCard(settingscard){
   Card.call(this, "weeklyscreen", "WeeklyCard.html");
 
+  this.settingscard = settingscard;
   this.autoclosems = 30*1000;
 }
 
@@ -8,18 +9,28 @@ function WeeklyCard(){
 WeeklyCard.prototype = Object.create(Card.prototype);
 
 
-// FIXME: this needs to use the close() function
 WeeklyCard.prototype.onClick = function(){
   console.log("Handling a weekly screen click");
   clearTimeout(this.closetimeout); // in case somebody clicks to close this screen
-  document.getElementById("weeklyscreen").style.display = "none";
+  this.hide();
+}
+
+
+WeeklyCard.prototype.onCardAdded = function(){
+  self = this;
+  document.getElementById("settingsbutton").onclick = function(event){
+    self.displaySettingsScreen(event);
+  }
+  document.getElementById("reloadbutton").onclick = function(event){
+    self.reloadPage(event);
+  }
 }
 
 
 /*
  *  Reload the page when the reload button is pressed
  */
-function reloadPage(event){
+WeeklyCard.prototype.reloadPage = function(event){
   console.log("Reloading the page");
   window.location.reload(true);
 }
@@ -28,16 +39,17 @@ function reloadPage(event){
 /*
  *  Display the settings screen when the settings button is pressed
  */
-// FIXME: use the close() and show() functions
-// FIXME: clear the correct timeout
-function displaySettingsScreen(event){
+WeeklyCard.prototype.displaySettingsScreen = function(event){
   event.stopPropagation();
   console.log("Displaying settings screen");
-  clearTimeout(weeklyscreentimeout);
-  document.getElementById("weeklyscreen").style.display = "none";
-  document.getElementById("settingsscreen").style.display = "inline";
+  console.log(this);
+  clearTimeout(this.closetimeout);
+  this.hide();
+  this.settingscard.show();
 }
 
+// FIXME: get rid of stuff with 'Orig' in its name
+// FIXME: should main.css be split up between the cards too?  Probably.
 
 /*
  *  Update the card's info

@@ -48,13 +48,14 @@ Card.prototype.onClick = function(){
  * Override this function to update a card's data
  */
 Card.prototype.updateCardData = function(data){
-  console.log("No updateDisplay() defined");
+  console.log("No updateCardData() defined");
 }
 
 
+// FIXME: what other events should get callbacks?
 /*
  *  Called when showing a card
- *  Override to perform more actions as needed.
+ *  Override to perform more actions as needed
  */
 Card.prototype.onCardShow = function(){
   return;
@@ -62,11 +63,29 @@ Card.prototype.onCardShow = function(){
 
 
 /*
+ * Called when a card's HTML has been loaded
+ * Override to perform more actions as needed
+ */
+Card.prototype.onCardLoaded = function(){
+  return;
+}
+
+
+/*
+ * Called when a card is added to the document
+ * Override to perform more actions as needed
+ */ 
+Card.prototype.onCardAdded = function(){
+  return;
+}
+
+/*
  * Add a card to the document
 */
 Card.prototype.addToDocument = function(){
   console.log("Adding div to the screen");
   document.body.appendChild(this.div);
+  this.onCardAdded();
 }
 
 
@@ -127,6 +146,8 @@ Card.prototype.cardOnloadHandler = function(){
       contentDiv.innerHTML = this.responseText;
 
       this.card.isloaded = true;
+      this.card.onCardLoaded();
+
       if(this.card.intervalUpdateDisplay != undefined){
         setInterval(this.card.intervalUpdateDisplay, this.card.displayupdatems);
       }
