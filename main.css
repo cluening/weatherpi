@@ -53,7 +53,7 @@ div.alertdescriptionbar {
   text-shadow: none;
 }
 
-div.alertbar {
+div.WeatherCard-alertbar {
   position: absolute;
   top: 0vh;
   left: 0vh;
