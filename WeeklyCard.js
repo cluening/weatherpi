@@ -18,10 +18,10 @@ WeeklyCard.prototype.onClick = function(){
 
 WeeklyCard.prototype.onCardAdded = function(){
   var self = this;
-  document.getElementById("settingsbutton").onclick = function(event){
+  document.getElementById("WeeklyCard.settingsbutton").onclick = function(event){
     self.displaySettingsScreen(event);
   }
-  document.getElementById("reloadbutton").onclick = function(event){
+  document.getElementById("WeeklyCard.reloadbutton").onclick = function(event){
     self.reloadPage(event);
   }
 }
@@ -55,20 +55,20 @@ WeeklyCard.prototype.displaySettingsScreen = function(event){
 // Needs:
 //   weather object
 WeeklyCard.prototype.updateCardData = function(data){
-  document.getElementById("day1name").textContent = data['weather']['day1name'];
-  document.getElementById("day2name").textContent = data['weather']['day2name'];
-  document.getElementById("day3name").textContent = data['weather']['day3name'];
+  document.getElementById("WeeklyCard.day1name").textContent = data['weather']['day1name'];
+  document.getElementById("WeeklyCard.day2name").textContent = data['weather']['day2name'];
+  document.getElementById("WeeklyCard.day3name").textContent = data['weather']['day3name'];
 
-  document.getElementById("day1icon").className = data['weather']['day1icon'];
-  document.getElementById("day2icon").className = data['weather']['day2icon'];
-  document.getElementById("day3icon").className = data['weather']['day3icon'];
+  document.getElementById("WeeklyCard.day1icon").className = data['weather']['day1icon'];
+  document.getElementById("WeeklyCard.day2icon").className = data['weather']['day2icon'];
+  document.getElementById("WeeklyCard.day3icon").className = data['weather']['day3icon'];
 
-  document.getElementById("day1lowtemp").textContent = data['weather']['day1lowtemp'];
-  document.getElementById("day1hightemp").textContent = data['weather']['day1hightemp'];
-  document.getElementById("day2lowtemp").textContent = data['weather']['day2lowtemp'];
-  document.getElementById("day2hightemp").textContent = data['weather']['day2hightemp'];
-  document.getElementById("day3lowtemp").textContent = data['weather']['day3lowtemp'];
-  document.getElementById("day3hightemp").textContent = data['weather']['day3hightemp'];
+  document.getElementById("WeeklyCard.day1lowtemp").textContent = data['weather']['day1lowtemp'];
+  document.getElementById("WeeklyCard.day1hightemp").textContent = data['weather']['day1hightemp'];
+  document.getElementById("WeeklyCard.day2lowtemp").textContent = data['weather']['day2lowtemp'];
+  document.getElementById("WeeklyCard.day2hightemp").textContent = data['weather']['day2hightemp'];
+  document.getElementById("WeeklyCard.day3lowtemp").textContent = data['weather']['day3lowtemp'];
+  document.getElementById("WeeklyCard.day3hightemp").textContent = data['weather']['day3hightemp'];
 
-  document.getElementById("dailysummary").textContent = data['weather']['dailysummary'];
+  document.getElementById("WeeklyCard.dailysummary").textContent = data['weather']['dailysummary'];
 }
