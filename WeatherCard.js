@@ -1,7 +1,5 @@
 function WeatherCard(detailcard, alertcard){
-  // FIXME: the 'weatherscreen' name needs to be namespaced too
-  // FIXME: the 'weatherscreen' name needs to change to something like 'WeatherCard.card'
-  Card.call(this, "weatherscreen", "WeatherCard.html");
+  Card.call(this, "WeatherCard.card", "WeatherCard.html");
 
   this.displayupdatems = 500;
   this.detailcard = detailcard;
@@ -57,8 +55,7 @@ WeatherCard.prototype.intervalUpdateDisplay = function(){
   //console.log("Time: " + timestamp);
   //console.log("Sunrisetime: " + weather['sunriseTime']);
   //console.log("Sunsettime: " + weather['sunsetTime']);
-  // FIXME: 'weatherscreen' needs a namespace
-  var screen = document.getElementById("weatherscreen");
+  var screen = document.getElementById("WeatherCard.card");
     
   if((timestamp > weather['sunriseTime'] - 3600 && timestamp < weather['sunsetTime']) && daynight != "day"){
     if(timestamp < weather['sunriseTime']){
@@ -104,7 +101,6 @@ WeatherCard.prototype.updateCardData = function(data){
   var tempdelta = document.getElementById("WeatherCard.tempdelta");
   var hightemp = document.getElementById("WeatherCard.hightemp");
   var lowtemp = document.getElementById("WeatherCard.lowtemp");
-  var screen = document.getElementById("WeatherCard.weatherscreen");
   var hourlysummary = document.getElementById("WeatherCard.hourlysummary");
 
   if(data['weather']['alerttitles'].length > 0){

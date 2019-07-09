@@ -29,17 +29,17 @@ div.screen {
 }
 
 
-#weeklyscreen {
+#WeeklyCard\.card {
   display: none;
   background-color: rgba(27, 103, 200, 1.0);
 }
 
-#settingsscreen {
+#SettingsCard\.card {
   display: none;
   background-color: rgba(27, 103, 200, 1.0);
 }
 
-#alertdescriptionscreen {
+#AlertCard\.card {
   display: none;
   font-size: 5.625vh;
   text-align: justify;
