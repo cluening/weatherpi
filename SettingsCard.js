@@ -10,10 +10,10 @@ SettingsCard.prototype = Object.create(Card.prototype);
  */
 SettingsCard.prototype.onCardAdded = function(){
   var self = this;
-  document.getElementById("closeweatherpi").onclick = function(event){
+  document.getElementById("SettingsCard.closeweatherpi").onclick = function(event){
     self.closeWeatherPi(event);
   }
-  document.getElementById("settingsclose").onclick = function(event){
+  document.getElementById("SettingsCard.settingsclose").onclick = function(event){
     self.closeSettingsScreen(event);
   }
 }
@@ -43,5 +43,5 @@ SettingsCard.prototype.closeWeatherPi = function(event){
 // Needs:
 //   weather object
 SettingsCard.prototype.updateCardData = function(data){
-  document.getElementById("lastupdatedate").textContent = Date(data['weather']['updatetime']);
+  document.getElementById("SettingsCard.lastupdatedate").textContent = Date(data['weather']['updatetime']);
 }
