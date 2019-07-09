@@ -36,8 +36,8 @@ AlertCard.prototype.onCardShow = function(){
     console.log("Showing alert " + this.curalertdescription);
 
   if(weather["alerttitles"].length > this.curalertdescription){
-    document.getElementById("alertdescriptionbar").textContent = weather['alerttitles'][this.curalertdescription];
-    document.getElementById("alertdescription").innerHTML = weather['alertdescriptions'][this.curalertdescription];
+    document.getElementById("AlertCard.alertdescriptionbar").textContent = weather['alerttitles'][this.curalertdescription];
+    document.getElementById("AlertCard.alertdescription").innerHTML = weather['alertdescriptions'][this.curalertdescription];
   }
 }
 
