@@ -1,5 +1,5 @@
 function WeatherCard(detailcard, alertcard){
-  Card.call(this, "WeatherCard.card", "WeatherCard.html");
+  Card.call(this, "WeatherCard-card", "WeatherCard.html");
 
   this.displayupdatems = 500;
   this.detailcard = detailcard;
@@ -42,7 +42,7 @@ WeatherCard.prototype.intervalUpdateDisplay = function(){
     hours = hours % 12;
   }
 
-  timespan = document.getElementById("WeatherCard.time");
+  timespan = document.getElementById("WeatherCard-time");
   try {
     timespan.innerHTML = hours + ":" + minutes;
   }
@@ -55,7 +55,7 @@ WeatherCard.prototype.intervalUpdateDisplay = function(){
   //console.log("Time: " + timestamp);
   //console.log("Sunrisetime: " + weather['sunriseTime']);
   //console.log("Sunsettime: " + weather['sunsetTime']);
-  var screen = document.getElementById("WeatherCard.card");
+  var screen = document.getElementById("WeatherCard-card");
     
   if((timestamp > weather['sunriseTime'] - 3600 && timestamp < weather['sunsetTime']) && daynight != "day"){
     if(timestamp < weather['sunriseTime']){
@@ -96,17 +96,17 @@ WeatherCard.prototype.intervalUpdateDisplay = function(){
 // Needs:
 //   weather object
 WeatherCard.prototype.updateCardData = function(data){
-  var iconspan = document.getElementById("WeatherCard.icon");
-  var temperaturespan = document.getElementById("WeatherCard.temperature");
-  var tempdelta = document.getElementById("WeatherCard.tempdelta");
-  var hightemp = document.getElementById("WeatherCard.hightemp");
-  var lowtemp = document.getElementById("WeatherCard.lowtemp");
-  var hourlysummary = document.getElementById("WeatherCard.hourlysummary");
+  var iconspan = document.getElementById("WeatherCard-icon");
+  var temperaturespan = document.getElementById("WeatherCard-temperature");
+  var tempdelta = document.getElementById("WeatherCard-tempdelta");
+  var hightemp = document.getElementById("WeatherCard-hightemp");
+  var lowtemp = document.getElementById("WeatherCard-lowtemp");
+  var hourlysummary = document.getElementById("WeatherCard-hourlysummary");
 
   if(data['weather']['alerttitles'].length > 0){
-    document.getElementById("WeatherCard.alertbar").textContent = data['weather']['alerttitles'][0];
+    document.getElementById("WeatherCard-alertbar").textContent = data['weather']['alerttitles'][0];
   } else {
-    document.getElementById("WeatherCard.alertbar").textContent = "";
+    document.getElementById("WeatherCard-alertbar").textContent = "";
   }
 
   iconspan.className = data['weather']['icon'];
