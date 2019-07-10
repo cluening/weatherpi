@@ -92,11 +92,17 @@ div.summary {
   font-size: 5.625vh;
 }
 
-div.summary#dailysummary {
+div.WeeklyCard-summary {
+  clear: both;
+  text-align: center;
+  font-size: 5.625vh;
+}
+
+div.WeeklyCard-summary#WeeklyCard-dailysummary {
   padding-top: 1em;
 }
 
-div.reloadbutton {
+div.WeeklyCard-reloadbutton {
   position: absolute;
   height: 37.5vh;
   width: 37.5vh;
@@ -108,14 +114,14 @@ span.tempdelta {
   font-size: 5.625vh;
 }
 
-span.reloadbutton {
+span.WeeklyCard-reloadbutton {
   font-size: 12.5vh;
   position: absolute;
   bottom: 0vh;
   right: 1.56vh;
 }
 
-div.settingsbutton {
+div.WeeklyCard-settingsbutton {
   position: absolute;
   height: 37.5vh;
   width: 37.5vh;
@@ -123,7 +129,7 @@ div.settingsbutton {
   left: 0vh;
 }
 
-span.settingsbutton {
+span.WeeklyCard-settingsbutton {
   font-size: 12.5vh;
   position: absolute;
   bottom: 0vh;
@@ -138,21 +144,21 @@ span.temperature {
   font-size: 15.625vh;
 }
 
-span.dayname {
+span.WeeklyCard-dayname {
   font-size: 12.5vh;
   font-weight: bold;
 }
 
-span.dailyhighlow {
+span.WeeklyCard-dailyhighlow {
   font-size: 6.875vh;
 }
 
-div.threedayforecast {
+div.WeeklyCard-threedayforecast {
   margin: auto;
   width: 150vh;
 }
 
-div.dayforecast {
+div.WeeklyCard-dayforecast {
   width: 50vh;
   float: left;
   text-align: center;
