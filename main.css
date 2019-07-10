@@ -64,29 +64,29 @@ div.WeatherCard-alertbar {
   text-shadow: none;
 }
 
-div.time {
+div.WeatherCard-time {
   /*margin-top: 5%;*/
   font-size: 43.75vh;
   font-weight: bold;
   text-align: center;
 }
 
-div.conditions {
+div.WeatherCard-conditions {
   float: left;
   font-size: 31.25vh;
   width: 1em;
   text-align: center;
 }
 
-div.temperature {
+div.WeatherCard-temperature {
   float: left;
 }
 
-div.highlow {
+div.WeatherCard-highlow {
   float: right;
 }
 
-div.summary {
+div.WeatherCard-summary {
   clear: both;
   text-align: center;
   font-size: 5.625vh;
@@ -110,7 +110,7 @@ div.WeeklyCard-reloadbutton {
   right: 0vh;
 }
 
-span.tempdelta {
+span.WeatherCard-tempdelta {
   font-size: 5.625vh;
 }
 
@@ -136,11 +136,11 @@ span.WeeklyCard-settingsbutton {
   left: 1.56vh;
 }
 
-span.highlow {
+span.WeatherCard-highlow {
   font-size: 15.625vh;
 }
 
-span.temperature {
+span.WeatherCard-temperature {
   font-size: 15.625vh;
 }
 
