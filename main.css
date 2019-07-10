@@ -163,11 +163,11 @@ span.dayforecast {
   font-size: 46.875vh;
 }
 
-div.settingsmenu {
+div.SettingsCard-settingsmenu {
   text-align: center;
   font-size: 12.5vh;
 }
 
-div.closebutton {
+div.SettingsCard-closebutton {
   float: right;
 }
