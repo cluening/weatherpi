@@ -1,0 +1,50 @@
+div.WeatherCard-alertbar {
+  position: absolute;
+  top: 0vh;
+  left: 0vh;
+  width: 100%;
+  background-color: #FF0000;
+  font-size: 5.625vh;
+  text-align: center;
+  text-shadow: none;
+}
+
+div.WeatherCard-time {
+  /*margin-top: 5%;*/
+  font-size: 43.75vh;
+  font-weight: bold;
+  text-align: center;
+}
+
+div.WeatherCard-temperature {
+  float: left;
+}
+
+div.WeatherCard-conditions {
+  float: left;
+  font-size: 31.25vh;
+  width: 1em;
+  text-align: center;
+}
+
+div.WeatherCard-highlow {
+  float: right;
+}
+
+div.WeatherCard-summary {
+  clear: both;
+  text-align: center;
+  font-size: 5.625vh;
+}
+
+span.WeatherCard-tempdelta {
+  font-size: 5.625vh;
+}
+
+span.WeatherCard-highlow {
+  font-size: 15.625vh;
+}
+
+span.WeatherCard-temperature {
+  font-size: 15.625vh;
+}

@@ -1,0 +1,13 @@
+#SettingsCard-card {
+  display: none;
+  background-color: rgba(27, 103, 200, 1.0);
+}
+
+div.SettingsCard-settingsmenu {
+  text-align: center;
+  font-size: 12.5vh;
+}
+
+div.SettingsCard-closebutton {
+  float: right;
+}

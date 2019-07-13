@@ -1,0 +1,65 @@
+#WeeklyCard-card {
+  display: none;
+  background-color: rgba(27, 103, 200, 1.0);
+}
+
+div.WeeklyCard-summary#WeeklyCard-dailysummary {
+  padding-top: 1em;
+}
+
+div.WeeklyCard-reloadbutton {
+  position: absolute;
+  height: 37.5vh;
+  width: 37.5vh;
+  bottom: 0vh;
+  right: 0vh;
+}
+
+span.WeeklyCard-reloadbutton {
+  font-size: 12.5vh;
+  position: absolute;
+  bottom: 0vh;
+  right: 1.56vh;
+}
+
+div.WeeklyCard-settingsbutton {
+  position: absolute;
+  height: 37.5vh;
+  width: 37.5vh;
+  bottom: 0vh;
+  left: 0vh;
+}
+
+span.WeeklyCard-settingsbutton {
+  font-size: 12.5vh;
+  position: absolute;
+  bottom: 0vh;
+  left: 1.56vh;
+}
+
+span.WeeklyCard-dayname {
+  font-size: 12.5vh;
+  font-weight: bold;
+}
+
+span.WeeklyCard-dailyhighlow {
+  font-size: 6.875vh;
+}
+
+div.WeeklyCard-threedayforecast {
+  margin: auto;
+  width: 150vh;
+}
+
+div.WeeklyCard-dayforecast {
+  width: 50vh;
+  float: left;
+  text-align: center;
+  font-size: 46.875vh;
+}
+
+div.WeeklyCard-summary {
+  clear: both;
+  text-align: center;
+  font-size: 5.625vh;
+}

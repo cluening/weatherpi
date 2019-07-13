@@ -1,0 +1,13 @@
+#AlertCard-card {
+  display: none;
+  font-size: 5.625vh;
+  text-align: justify;
+  background-color: rgba(27, 103, 200, 1.0);
+}
+
+div.AlertCard-alertdescriptionbar {
+  background-color: #FF0000;
+  font-size: 5.625vh;
+  text-align: center;
+  text-shadow: none;
+}
