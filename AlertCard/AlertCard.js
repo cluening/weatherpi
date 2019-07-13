@@ -1,5 +1,5 @@
 function AlertCard(weeklycard){
-  Card.call(this, "AlertCard-card", "AlertCard.html");
+  Card.call(this, "AlertCard-card", "AlertCard/AlertCard.html");
 
   this.weeklycard = weeklycard;
 
