@@ -28,30 +28,7 @@ div.screen {
   /*background: radial-gradient(at top, #012F68, #000E3E);*/
 }
 
-
-#WeeklyCard-card {
-  display: none;
-  background-color: rgba(27, 103, 200, 1.0);
-}
-
-#SettingsCard-card {
-  display: none;
-  background-color: rgba(27, 103, 200, 1.0);
-}
-
-#AlertCard-card {
-  display: none;
-  font-size: 5.625vh;
-  text-align: justify;
-  background-color: rgba(27, 103, 200, 1.0);
-}
-
-div.AlertCard-alertdescriptionbar {
-  background-color: #FF0000;
-  font-size: 5.625vh;
-  text-align: center;
-  text-shadow: none;
-}
+/* WeatherCard */
 
 div.WeatherCard-alertbar {
   position: absolute;
@@ -71,15 +48,15 @@ div.WeatherCard-time {
   text-align: center;
 }
 
+div.WeatherCard-temperature {
+  float: left;
+}
+
 div.WeatherCard-conditions {
   float: left;
   font-size: 31.25vh;
   width: 1em;
   text-align: center;
-}
-
-div.WeatherCard-temperature {
-  float: left;
 }
 
 div.WeatherCard-highlow {
@@ -98,6 +75,47 @@ div.WeeklyCard-summary {
   font-size: 5.625vh;
 }
 
+
+/* End WeatherCard */
+
+/* AlertCard */
+
+#AlertCard-card {
+  display: none;
+  font-size: 5.625vh;
+  text-align: justify;
+  background-color: rgba(27, 103, 200, 1.0);
+}
+
+div.AlertCard-alertdescriptionbar {
+  background-color: #FF0000;
+  font-size: 5.625vh;
+  text-align: center;
+  text-shadow: none;
+}
+
+span.WeatherCard-tempdelta {
+  font-size: 5.625vh;
+}
+
+span.WeatherCard-highlow {
+  font-size: 15.625vh;
+}
+
+span.WeatherCard-temperature {
+  font-size: 15.625vh;
+}
+
+
+/* End AlertCard */
+
+/* WeeklyCard */
+
+#WeeklyCard-card {
+  display: none;
+  background-color: rgba(27, 103, 200, 1.0);
+}
+
 div.WeeklyCard-summary#WeeklyCard-dailysummary {
   padding-top: 1em;
 }
@@ -108,10 +126,6 @@ div.WeeklyCard-reloadbutton {
   width: 37.5vh;
   bottom: 0vh;
   right: 0vh;
-}
-
-span.WeatherCard-tempdelta {
-  font-size: 5.625vh;
 }
 
 span.WeeklyCard-reloadbutton {
@@ -136,14 +150,6 @@ span.WeeklyCard-settingsbutton {
   left: 1.56vh;
 }
 
-span.WeatherCard-highlow {
-  font-size: 15.625vh;
-}
-
-span.WeatherCard-temperature {
-  font-size: 15.625vh;
-}
-
 span.WeeklyCard-dayname {
   font-size: 12.5vh;
   font-weight: bold;
@@ -165,8 +171,14 @@ div.WeeklyCard-dayforecast {
   font-size: 46.875vh;
 }
 
-span.dayforecast {
-  font-size: 46.875vh;
+
+/* End WeeklyCard */
+
+/* SettingsCard */
+
+#SettingsCard-card {
+  display: none;
+  background-color: rgba(27, 103, 200, 1.0);
 }
 
 div.SettingsCard-settingsmenu {
@@ -177,3 +189,5 @@ div.SettingsCard-settingsmenu {
 div.SettingsCard-closebutton {
   float: right;
 }
+
+/* End SettingsCard */
