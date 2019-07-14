@@ -1,10 +1,10 @@
 /*
  *  The card object
  */
-function Card(cardname, cardhtml){
+function Card(cardname){
   console.log("Creating new card");
   this.name = cardname;
-  this.html = cardhtml;
+  this.html = this.name + "/card.html";
   this.isloaded = false;
   this.displayupdatems = 15*60*1000;
   this.autoclosems = -1;
