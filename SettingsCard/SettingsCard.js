@@ -1,5 +1,5 @@
 function SettingsCard(){
-  Card.call(this, "SettingsCard-card", "SettingsCard/SettingsCard.html");
+  Card.call(this, "SettingsCard-card", "SettingsCard/Card.html");
 }
 
 SettingsCard.prototype = Object.create(Card.prototype);
