@@ -7,8 +7,7 @@ function AlertCard(weeklycard){
   this.alertdescriptions = [];
 
   this.autoclosems = 30*1000;
-  // FIXME: change this to "curalert" or "curdisplayalert" or something similar
-  this.curalertdescription = 0;
+  this.curalertindex = 0;
 }
 
 AlertCard.prototype = Object.create(Card.prototype);
@@ -19,11 +18,11 @@ AlertCard.prototype.onClick = function(){
   console.log("Handling an alert screen click");
   clearTimeout(this.closetimeout);
   console.log(this.onClick);
-  if(weather["alerttitles"].length > this.curalertdescription + 1){
-    this.curalertdescription += 1;
+  if(weather["alerttitles"].length > this.curalertindex + 1){
+    this.curalertindex += 1;
     this.show();
   }else{
-    this.curalertdescription = 0;
+    this.curalertindex = 0;
     console.log("Hiding alert description screen.");
     this.weeklycard.show();
     this.hide();
@@ -33,11 +32,11 @@ AlertCard.prototype.onClick = function(){
 
 AlertCard.prototype.onCardShow = function(){
   console.log("AlertCard onCardShow callback");
-    console.log("Showing alert " + this.curalertdescription);
+    console.log("Showing alert " + this.curalertindex);
 
-  if(weather["alerttitles"].length > this.curalertdescription){
-    document.getElementById("AlertCard-alertdescriptionbar").textContent = weather['alerttitles'][this.curalertdescription];
-    document.getElementById("AlertCard-alertdescription").innerHTML = weather['alertdescriptions'][this.curalertdescription];
+  if(weather["alerttitles"].length > this.curalertindex){
+    document.getElementById("AlertCard-alertdescriptionbar").textContent = weather['alerttitles'][this.curalertindex];
+    document.getElementById("AlertCard-alertdescription").innerHTML = weather['alertdescriptions'][this.curalertindex];
   }
 }
 
