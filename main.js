@@ -53,7 +53,7 @@ function waitForLoaded(){
  *  Wrapper function that kicks off the weather update process
  */
 function updateWeather(){
-  var url = "currentweather.json";
+  var url = "currentweather.json" + "?" + ((new Date()).getTime());
   var Httpreq = new XMLHttpRequest();
 
   console.log("Grabbing a weather update");
@@ -71,6 +71,7 @@ function updateWeather(){
 function weatherOnloadHandler(){
   if(this.readyState === 4){
     if(this.status === 200){
+      console.log("Successfully grabbed weather update");
       weather = JSON.parse(this.responseText);
       updateWeatherDisplay();
     } else {
