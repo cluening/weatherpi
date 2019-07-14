@@ -14,18 +14,13 @@ function Card(cardname, cardhtml){
   this.div.id = this.name + "-card";
   this.div.className = "screen";
 
-  // FIXME: this is now defined all the time
-  if(this.onClick != undefined) {
-    var self = this;
-    this.div.onclick = function(){
-      self.onClick();
-    }
+  var self = this;
+  this.div.onclick = function(){
+    self.onClick();
   }
 
   this.downloadCardHTML();
 
-  // Other variables and functions this object needs:
-  // var divID (or should this just always be the card name?)
 }
 
 
