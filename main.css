@@ -11,8 +11,7 @@ body {
   user-select: none;          /* Likely future */
 }
 
-/* FIXME: this should become "card" instead of "screen" */
-div.screen {
+div.Card {
   display: none;
   position: absolute;
   top: 0vh;

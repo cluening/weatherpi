@@ -12,7 +12,7 @@ function Card(cardname, cardhtml){
 
   this.div = document.createElement("div");
   this.div.id = this.name + "-card";
-  this.div.className = "screen";
+  this.div.className = "Card";
 
   var self = this;
   this.div.onclick = function(){
