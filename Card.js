@@ -11,7 +11,7 @@ function Card(cardname, cardhtml){
   this.closetimeout = undefined;
 
   this.div = document.createElement("div");
-  this.div.id = this.name;
+  this.div.id = this.name + "-card";
   this.div.className = "screen";
 
   // FIXME: this is now defined all the time

@@ -1,5 +1,5 @@
 function WeeklyCard(settingscard){
-  Card.call(this, "WeeklyCard-card", "WeeklyCard/Card.html");
+  Card.call(this, "WeeklyCard", "WeeklyCard/Card.html");
 
   this.settingscard = settingscard;
   this.autoclosems = 30*1000;
