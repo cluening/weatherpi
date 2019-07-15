@@ -6,7 +6,6 @@ function Card(cardname){
   this.name = cardname;
   this.html = this.name + "/card.html";
   this.isloaded = false;
-  this.displayupdatems = 15*60*1000;
   this.autoclosems = -1;
   this.closetimeout = undefined;
 
@@ -22,14 +21,6 @@ function Card(cardname){
   this.downloadCardHTML();
 
 }
-
-
-// FIXME: this should go away
-/*
- * Override this function to have this card's display updated every
- * this.displayupdatems milliseconds
- */
-Card.prototype.intervalUpdateDisplay = undefined;
 
 
 /*
@@ -158,11 +149,6 @@ Card.prototype.cardOnloadHandler = function(){
 
       this.card.isloaded = true;
       this.card.onCardLoaded();
-
-      if(this.card.intervalUpdateDisplay != undefined){
-        setInterval(this.card.intervalUpdateDisplay, this.card.displayupdatems);
-      }
-
     } else {
       console.error(this.statusText);
     }

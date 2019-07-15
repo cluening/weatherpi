@@ -24,9 +24,16 @@ WeatherCard.prototype.onClick = function(){
 
 
 /*
+ * Handle the card being loaded
+ */
+WeatherCard.prototype.onCardLoaded = function(){
+  setInterval(this.intervalUpdateDisplay, this.displayupdatems);
+}
+
+
+/*
  *  Update the time part of the display
  */
-// FIXME: this function should probably just be private to this card, since nothing else needs something like it
 WeatherCard.prototype.intervalUpdateDisplay = function(){
   var now = new Date();
   var timestamp = Date.parse(now)/1000;
