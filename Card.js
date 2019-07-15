@@ -24,6 +24,7 @@ function Card(cardname){
 }
 
 
+// FIXME: this should go away
 /*
  * Override this function to have this card's display updated every
  * this.displayupdatems milliseconds
@@ -32,6 +33,23 @@ Card.prototype.intervalUpdateDisplay = undefined;
 
 
 /*
+ * Override this function to update a card's data
+ */
+// FIXME: this should probably be called something like "onCardDataUpdate"
+Card.prototype.updateCardData = function(data){
+  console.log("No updateCardData() defined");
+}
+
+
+/**
+ ******************************************************
+ **  Callbacks that can be overridden by subclasses  **
+ ******************************************************
+ **/
+// FIXME: what other events should get callbacks?
+
+/*
+ * Called when a card is tapped
  * Override this function to handle card-wide click events
  */
 Card.prototype.onClick = function(){
@@ -39,15 +57,6 @@ Card.prototype.onClick = function(){
 }
 
 
-/*
- * Override this function to update a card's data
- */
-Card.prototype.updateCardData = function(data){
-  console.log("No updateCardData() defined");
-}
-
-
-// FIXME: what other events should get callbacks?
 /*
  *  Called when showing a card
  *  Override to perform more actions as needed
@@ -73,6 +82,13 @@ Card.prototype.onCardLoaded = function(){
 Card.prototype.onCardAdded = function(){
   return;
 }
+
+/**
+ *********************
+ **  End callbacks  **
+ *********************
+ **/
+
 
 /*
  * Add a card to the document
