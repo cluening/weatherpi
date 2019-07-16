@@ -37,6 +37,7 @@ function waitForLoaded(){
       return;
     }
   }
+  // FIXME: add verbosity levels
   console.log("All cards loaded");
   weathercard.addToDocument();
   alertcard.addToDocument();
