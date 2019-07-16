@@ -14,11 +14,10 @@ AlertCard.prototype = Object.create(Card.prototype);
 
 
 AlertCard.prototype.onClick = function(){
-  // FIXME: need to stop using the global weather object
   console.log("Handling an alert screen click");
   clearTimeout(this.closetimeout);
   console.log(this.onClick);
-  if(weather["alerttitles"].length > this.curalertindex + 1){
+  if(this.alerttitles.length > this.curalertindex + 1){
     this.curalertindex += 1;
     this.show();
   }else{
@@ -34,9 +33,9 @@ AlertCard.prototype.onCardShow = function(){
   console.log("AlertCard onCardShow callback");
     console.log("Showing alert " + this.curalertindex);
 
-  if(weather["alerttitles"].length > this.curalertindex){
-    document.getElementById("AlertCard-alertdescriptionbar").textContent = weather['alerttitles'][this.curalertindex];
-    document.getElementById("AlertCard-alertdescription").innerHTML = weather['alertdescriptions'][this.curalertindex];
+  if(this.alerttitles.length > this.curalertindex){
+    document.getElementById("AlertCard-alertdescriptionbar").textContent = this.alerttitles[this.curalertindex];
+    document.getElementById("AlertCard-alertdescription").innerHTML = this.alertdescriptions[this.curalertindex];
   }
 }
 
