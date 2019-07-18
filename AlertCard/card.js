@@ -43,10 +43,9 @@ AlertCard.prototype.onCardShow = function(){
 // Requires:
 //   alertitles[]
 //   alertdescriptions[]
-// FIXME: should this just take the weather object like the other three ended up doing?
 AlertCard.prototype.updateCardData = function(data){
   console.log("Updating alert display");
 
-  this.alerttitles = data["alerttitles"];
-  this.alertdescriptions = data["alertdescriptions"];
+  this.alerttitles = data['weather']['alerttitles'];
+  this.alertdescriptions = data['weather']['alertdescriptions'];
 }

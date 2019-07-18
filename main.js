@@ -123,8 +123,7 @@ function updateWeatherDisplay(){
     {"weather": weather}
   );
   alertcard.updateCardData(
-    {"alerttitles": weather["alerttitles"], 
-     "alertdescriptions": weather["alertdescriptions"]}
+    {"weather": weather}
   );
   weeklycard.updateCardData(
     {"weather": weather}
