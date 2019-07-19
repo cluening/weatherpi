@@ -30,7 +30,7 @@ function onLoad(){
  * Wait for the cards to finish loading, then start the update loop
  */
 function waitForLoaded(){
-  for(i=0; i<cardlist.length; i++){
+  for(var i=0; i<cardlist.length; i++){
     if(cardlist[i].isloaded == false){
       console.log("Not loaded yet");
       setTimeout(waitForLoaded, 1000);
@@ -118,19 +118,13 @@ function onWeatherUpdate(){
     }
   }
 
-  // FIXME: should use the list of cards
-  weathercard.onWeatherUpdate(
-    {"weather": weather}
-  );
-  alertcard.onWeatherUpdate(
-    {"weather": weather}
-  );
-  weeklycard.onWeatherUpdate(
-    {"weather": weather}
-  );
-  settingscard.onWeatherUpdate(
-    {"weather": weather}
-  );
+  /* Call the card callbacks */
+  for (var i=0; i<cardlist.length; i++){
+    cardlist[i].onWeatherUpdate(
+      {"weather": weather}
+    );
+  }
+
 }
 
 
