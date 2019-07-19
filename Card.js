@@ -159,21 +159,19 @@ Card.prototype.cardOnloadHandler = function(){
  *  Error handling callback for the HTTP request object
  */
 Card.prototype.cardErrorHandler = function(){
-  // If the HTTP request fails, log the failure and try again in 15 minutes
-  console.error("Downloading card data failed.  " + this.statusText);
+  // If the HTTP request fails, display the catastrophic error screen
+  // FIXME: need to make an error screen
+  console.error("Downloading card data failed: " + this.statusText);
   updateWeatherDisplay();
-  // FIXME: should probably try again or something
-//  setTimeout(function(){updateWeather()}, 15*60*1000);
 }
 
 /*
  *  Timeout handling callback for the HTTP request object
  */
 Card.prototype.cardTimeoutHandler = function(){
-  // If the HTTP request times out, just try again in 15 minutes
-  console.log("Downloading card data timed out.  Trying again in 15 minutes.");
+  // If the HTTP request fails, display the catastrophic error screen
+  // FIXME: need to make an error screen
+  console.log("Downloading card data timed out: " + this.statusText);
   updateWeatherDisplay();
-  // FIXME: should probably try again or something
-  //setTimeout(function(){updateWeather()}, 15*60*1000);
 }
 
