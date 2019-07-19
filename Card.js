@@ -160,7 +160,7 @@ Card.prototype.cardOnloadHandler = function(){
  */
 Card.prototype.cardErrorHandler = function(){
   // If the HTTP request fails, log the failure and try again in 15 minutes
-  console.error("HTTP request failed.  " + this.statusText);
+  console.error("Downloading card data failed.  " + this.statusText);
   updateWeatherDisplay();
   // FIXME: should probably try again or something
 //  setTimeout(function(){updateWeather()}, 15*60*1000);
@@ -171,7 +171,7 @@ Card.prototype.cardErrorHandler = function(){
  */
 Card.prototype.cardTimeoutHandler = function(){
   // If the HTTP request times out, just try again in 15 minutes
-  console.log("HTTP request timed out.  Trying again in 15 minutes.");
+  console.log("Downloading card data timed out.  Trying again in 15 minutes.");
   updateWeatherDisplay();
   // FIXME: should probably try again or something
   //setTimeout(function(){updateWeather()}, 15*60*1000);

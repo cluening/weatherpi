@@ -76,7 +76,7 @@ function weatherOnloadHandler(){
       weather = JSON.parse(this.responseText);
       onWeatherUpdate();
     } else {
-      console.error(this.statusText);
+      console.log("HTTP request returned bad status:  " + this.statusText);
     }
   }
   setTimeout(function(){updateWeather()}, 15*60*1000);
@@ -85,10 +85,10 @@ function weatherOnloadHandler(){
 /*
  *  Error handling callback for the HTTP request object
  */
+// FIXME: this should used a global reload timeout variable
 function weatherErrorHandler(){
   // If the HTTP request fails, log the failure and try again in 15 minutes
-  console.error("HTTP request failed.  " + this.statusText);
-  updateWeatherDisplay();
+  console.log("HTTP request failed.  " + this.statusText);
   setTimeout(function(){updateWeather()}, 15*60*1000);
 }
 
@@ -98,7 +98,6 @@ function weatherErrorHandler(){
 function weatherTimeoutHandler(){
   // If the HTTP request times out, just try again in 15 minutes
   console.log("HTTP request timed out.  Trying again in 15 minutes.");
-  updateWeatherDisplay();
   setTimeout(function(){updateWeather()}, 15*60*1000);
 }
 
