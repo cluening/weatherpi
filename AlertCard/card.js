@@ -43,7 +43,7 @@ AlertCard.prototype.onCardShow = function(){
 // Requires:
 //   alertitles[]
 //   alertdescriptions[]
-AlertCard.prototype.updateCardData = function(data){
+AlertCard.prototype.onWeatherUpdate = function(data){
   console.log("Updating alert display");
 
   this.alerttitles = data['weather']['alerttitles'];

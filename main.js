@@ -74,7 +74,7 @@ function weatherOnloadHandler(){
     if(this.status === 200){
       console.log("Successfully grabbed weather update");
       weather = JSON.parse(this.responseText);
-      updateWeatherDisplay();
+      onWeatherUpdate();
     } else {
       console.error(this.statusText);
     }
@@ -105,7 +105,7 @@ function weatherTimeoutHandler(){
 /*
  *  Update the weather part of the display
  */
-function updateWeatherDisplay(){
+function onWeatherUpdate(){
   var staledataalert = "Last updated more than 2 hours ago";
   var staledatadescription = "<BR>Last weather update time:<BR>"; // Time and date get added later
   var curtime = Math.floor(Date.now()/1000); // Convert from milliseconds
@@ -119,16 +119,17 @@ function updateWeatherDisplay(){
     }
   }
 
-  weathercard.updateCardData(
+  // FIXME: should use the list of cards
+  weathercard.onWeatherUpdate(
     {"weather": weather}
   );
-  alertcard.updateCardData(
+  alertcard.onWeatherUpdate(
     {"weather": weather}
   );
-  weeklycard.updateCardData(
+  weeklycard.onWeatherUpdate(
     {"weather": weather}
   );
-  settingscard.updateCardData(
+  settingscard.onWeatherUpdate(
     {"weather": weather}
   );
 }

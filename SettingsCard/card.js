@@ -42,6 +42,6 @@ SettingsCard.prototype.closeWeatherPi = function(event){
  */
 // Needs:
 //   weather object
-SettingsCard.prototype.updateCardData = function(data){
+SettingsCard.prototype.onWeatherUpdate = function(data){
   document.getElementById("SettingsCard-lastupdatedate").textContent = Date(data['weather']['updatetime']);
 }

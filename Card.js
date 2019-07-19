@@ -23,21 +23,21 @@ function Card(cardname){
 }
 
 
-/*
- * Override this function to update a card's data
- */
-// FIXME: this should probably be called something like "onCardDataUpdate"
-Card.prototype.updateCardData = function(data){
-  console.log("No updateCardData() defined");
-}
-
-
 /**
  ******************************************************
  **  Callbacks that can be overridden by subclasses  **
  ******************************************************
  **/
 // FIXME: what other events should get callbacks?
+
+/*
+ * Called when the weather object has been updated
+ * Override this function to do card work when new weather data is available
+ */
+Card.prototype.onWeatherUpdate = function(data){
+  console.log("No onWeatherUpdate() defined");
+}
+
 
 /*
  * Called when a card is tapped

@@ -102,7 +102,7 @@ WeatherCard.prototype.intervalUpdateDisplay = function(){
  */
 // Needs:
 //   weather object
-WeatherCard.prototype.updateCardData = function(data){
+WeatherCard.prototype.onWeatherUpdate = function(data){
   var iconspan = document.getElementById("WeatherCard-icon");
   var temperaturespan = document.getElementById("WeatherCard-temperature");
   var tempdelta = document.getElementById("WeatherCard-tempdelta");
