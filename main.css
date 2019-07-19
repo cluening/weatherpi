@@ -1,8 +1,10 @@
 body {
-  background-color: white;
+  background-color: rgba(27, 103, 200, 1.0);
   color: white;
   font-family: Tahoma, Verdana, Geneva, sans-serif;
   text-shadow: 0vh .625vh 0vh rgba(0, 0, 0, .3);
+  text-align: center;
+  font-size: 12.5vh;
   margin: 0vh;
   border: 0vh;
   -webkit-user-select: none;  /* Chrome all / Safari all */
