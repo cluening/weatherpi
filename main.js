@@ -1,6 +1,7 @@
 var cardlist = [];
 var weather = {};
 var daynight = "day";
+var updatefrequencyms = 15*60*1000;
 
 /*
  *  Create the cards and wait for them to finish loading
@@ -79,17 +80,16 @@ function weatherOnloadHandler(){
       console.log("HTTP request returned bad status:  " + this.statusText);
     }
   }
-  setTimeout(function(){updateWeather()}, 15*60*1000);
+  setTimeout(function(){updateWeather()}, updatefrequencyms);
 }
 
 /*
  *  Error handling callback for the HTTP request object
  */
-// FIXME: this should used a global reload timeout variable
 function weatherErrorHandler(){
   // If the HTTP request fails, log the failure and try again in 15 minutes
   console.log("HTTP request failed.  " + this.statusText);
-  setTimeout(function(){updateWeather()}, 15*60*1000);
+  setTimeout(function(){updateWeather()}, updatefrequencyms);
 }
 
 /*
@@ -98,7 +98,7 @@ function weatherErrorHandler(){
 function weatherTimeoutHandler(){
   // If the HTTP request times out, just try again in 15 minutes
   console.log("HTTP request timed out.  Trying again in 15 minutes.");
-  setTimeout(function(){updateWeather()}, 15*60*1000);
+  setTimeout(function(){updateWeather()}, updatefrequencyms);
 }
 
 /*
