@@ -12,7 +12,7 @@ function onLoad(){
   //weather['sunriseTime'] = 1437826098;
   //weather['sunsetTime'] = 1437877032;
 
-  // These should all probably live in the list (or a dict) eventually
+  // FIXME: these should all become local variables
   settingscard = new SettingsCard();
   weeklycard = new WeeklyCard(settingscard);
   alertcard = new AlertCard(weeklycard);
