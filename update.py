@@ -2,11 +2,18 @@
 
 import sys
 import json
-import pyowm
 import configparser
 import time
 import calendar
 import datetime
+import requests
+
+
+def day_from_timestamp(timestamp):
+  daynames = [ "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" ]
+
+  return daynames[datetime.datetime.fromtimestamp(timestamp).weekday()]
+
 
 weather = {}
 
@@ -15,7 +22,7 @@ if len(config.read(["/etc/weatherpi.cfg", "weatherpi.cfg"])) < 1:
   sys.stderr.write("Could not load any config files\n")
   sys.exit(1)
 
-api_key = config.get("Updater", "owmapikey")
+api_key = config.get("Updater", "pirateweatherapikey")
 lat = config.get("Updater", "lat")
 lon = config.get("Updater", "lon")
 
@@ -33,30 +40,22 @@ lon = config.get("Updater", "lon")
 weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
 
 climacon = {
- "01d": "climacon sun",
- "01n": "climacon moon",
- "02d": "climacon cloud sun",
- "02n": "climacon cloud moon",
- "03d": "climacon cloud",
- "03n": "climacon cloud",
- "04d": "climacon cloud",
- "04n": "climacon cloud",
- "09d": "climacon showers sun",
- "09n": "climacon showers moon",
- "10d": "climacon rain",
- "10n": "climacon rain",
- "11d": "climacon lightning",
- "11n": "climacon lightning",
- "13d": "climacon snow",
- "13n": "climacon snow",
- "50d": "climacon fog",
- "50n": "climacon fog",
+  'clear-day': 'climacon sun',
+  'clear-night': 'climacon moon',
+  'rain': 'climacon rain',
+  'snow': 'climacon snow',
+  'sleet': 'climacon sleet',
+  'wind': 'climacon wind',
+  'fog': 'climacon fog',
+  'cloudy': 'climacon cloud',
+  'partly-cloudy-day': 'climacon cloud sun',
+  'partly-cloudy-night': 'climacon cloud moon',
 }
 
-owm = pyowm.OWM(api_key)
-mgr = owm.weather_manager()
-forecast = mgr.one_call(lat=float(lat), lon=float(lon), units="imperial")
+requestresult = requests.get(f"https://api.pirateweather.net/forecast/{api_key}/{lat},{lon}")
+forecast = requestresult.json()
 
+# FIXME: if the file doesn't exist yet, none of this works
 currentweatherfile = open(config.get("Updater", "currentweatherfile"), 'r')
 weatherprev = json.load(currentweatherfile)
 currentweatherfile.close()
@@ -66,70 +65,49 @@ currentweatherfile.close()
 # Add the time the weather was last updated
 weather['updatetime'] = int(time.time())
 
-# Add the current and high/low temperatures
-weather['temperature'] = "{:0.0f}".format(
-  round(float(
-    forecast.current.temp["temp"]
-  ))
-)
-weather['hightemp'] = "{:0.0f}".format(
-  round(float(
-    forecast.forecast_daily[0].temp["max"]
-  ))
-)
-weather['lowtemp'] = "{:0.0f}".format(
-  round(float(
-    forecast.forecast_daily[0].temp["min"]
-  ))
-)
+weather['summary'] = forecast["currently"]["summary"]
+weather['temperature'] = "%0.0f" % round(forecast["currently"]["temperature"])
+weather['hightemp'] = "%0.0f" % round(forecast["daily"]["data"][0]["temperatureMax"])
+weather['lowtemp'] = "%0.0f" % round(forecast["daily"]["data"][0]["temperatureMin"])
+weather['sunriseTime'] = forecast["daily"]["data"][0]["sunriseTime"]
+weather['sunsetTime'] = forecast["daily"]["data"][0]["sunsetTime"]
+weather['hourlysummary'] = forecast["hourly"]["summary"]
 
-# Add sunrise/sunset time
-weather['sunriseTime'] = forecast.current.sunrise_time()
-weather['sunsetTime'] = forecast.current.sunset_time()
+weather['day1hightemp'] = "%0.0f" % round(forecast["daily"]["data"][1]["temperatureMax"])
+weather['day1lowtemp'] = "%0.0f" % round(forecast["daily"]["data"][1]["temperatureMin"])
+weather['day1name'] = day_from_timestamp(forecast["daily"]["data"][1]["time"])
 
-# Shown at the bottom of the main weather card
-# "Partly cloudy throughout the day"
-weather['hourlysummary'] = forecast.forecast_hourly[0].status
+weather['day2hightemp'] = "%0.0f" % round(forecast["daily"]["data"][2]["temperatureMax"])
+weather['day2lowtemp'] = "%0.0f" % round(forecast["daily"]["data"][2]["temperatureMin"])
+weather['day2name'] = day_from_timestamp(forecast["daily"]["data"][2]["time"])
 
-weather['day1hightemp'] = "{:0.0f}".format(round(forecast.forecast_daily[1].temp["max"]))
-weather['day1lowtemp'] = "{:0.0f}".format(round(forecast.forecast_daily[1].temp["min"]))
-weather['day1name'] = weekdays[forecast.forecast_daily[1].reference_time("date").isoweekday()]
+weather['day3hightemp'] = "%0.0f" % round(forecast["daily"]["data"][3]["temperatureMax"])
+weather['day3lowtemp'] = "%0.0f" % round(forecast["daily"]["data"][3]["temperatureMin"])
+weather['day3name'] = day_from_timestamp(forecast["daily"]["data"][3]["time"])
 
-weather['day2hightemp'] = "{:0.0f}".format(round(forecast.forecast_daily[2].temp["max"]))
-weather['day2lowtemp'] = "{:0.0f}".format(round(forecast.forecast_daily[2].temp["min"]))
-weather['day2name'] = weekdays[forecast.forecast_daily[2].reference_time("date").isoweekday()]
-
-weather['day3hightemp'] = "{:0.0f}".format(round(forecast.forecast_daily[3].temp["max"]))
-weather['day3lowtemp'] = "{:0.0f}".format(round(forecast.forecast_daily[3].temp["min"]))
-weather['day3name'] = weekdays[forecast.forecast_daily[3].reference_time("date").isoweekday()]
-
-
-# Shown at the bottom of the weekly card
-# "Possible light rain on Monday through next Friday, ..."
-#weather['dailysummary'] = forecast.forecast_daily[1].status
+weather['dailysummary'] = forecast["daily"]["summary"]
 
 # Add weather alerts
 weather['alerttitles'] = []
 weather['alertdescriptions'] = []
-if forecast.national_weather_alerts is not None:
-  for alert in forecast.national_weather_alerts:
-    weather['alerttitles'].append(alert.title)
-    weather['alertdescriptions'].append(alert.description)
+for alert in forecast["alerts"]:
+  weather['alerttitles'].append(alert["title"])
+  weather['alertdescriptions'].append(alert["description"])
 
 try:
-  weather['icon'] = climacon[forecast.current.weather_icon_name]
+  weather['icon'] = climacon[forecast["currently"]["icon"]]
 except KeyError:
   weather['icon'] = 'climacon cloud refresh'
 try:
-  weather['day1icon'] = climacon[forecast.forecast_daily[1].weather_icon_name]
+  weather['day1icon'] = climacon[forecast["daily"]["data"][1]["icon"]]
 except KeyError:
   weather['day1icon'] = 'climacon cloud refresh'
 try:
-  weather['day2icon'] = climacon[forecast.forecast_daily[2].weather_icon_name]
+  weather['day2icon'] = climacon[forecast["daily"]["data"][2]["icon"]]
 except KeyError:
   weather['day2icon'] = 'climacon cloud refresh'
 try:
-  weather['day3icon'] = climacon[forecast.forecast_daily[3].weather_icon_name]
+  weather['day3icon'] = climacon[forecast["daily"]["data"][3]["icon"]]
 except KeyError:
   weather['day3icon'] = 'climacon cloud refresh'
 
